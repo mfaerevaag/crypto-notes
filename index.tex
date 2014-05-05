@@ -1,0 +1,97 @@
+\documentclass{article}
+
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage[table]{xcolor}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{parskip}
+\usepackage{url}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amstext}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[bottom]{footmisc}
+\usepackage{hyperref}
+
+\newcommand{\code}[1]{\texttt{#1}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\parindent}{0pt}
+\setlength{\headheight}{15pt}
+\setlength{\headsep}{25pt}
+\lhead{\leftmark}
+\cfoot{Page \thepage{} of \pageref{LastPage}}
+
+\title{
+  01410 Cryptology 1\\
+  Notes
+}
+\date{May, 2014}
+\author{}
+
+\begin{document}
+\maketitle
+\clearpage
+
+\tableofcontents
+\clearpage
+
+\section{Symmetric encryption and public-key encryption}
+\input{sections/1-sym-enc.tex}
+\clearpage
+
+\section{Symmetric-key authentication and public-key authentication}
+\input{sections/2-sym-auth.tex}
+\clearpage
+
+\section{Vigenere encryption and cryptanalysis}
+\input{sections/3-vigere.tex}
+\clearpage
+
+\section{Block ciphers, modes of operation, CBC-MAC}
+\input{sections/4-block.tex}
+\clearpage
+
+\section{RSA public-key encryption}
+\input{sections/5-rsa-enc.tex}
+\clearpage
+
+\section{RSA digital signatures}
+\input{sections/6-rsa-sign.tex}
+\clearpage
+
+\section{Prime number generation, Miller-Rabin}
+\input{sections/7-prime-gen-miller-rabin.tex}
+\clearpage
+
+\section{The discrete logarithm problem modulo p and El-Gamal encryption}
+\input{sections/8-dlp-elgamal-enc.tex}
+\clearpage
+
+\section{El-Gamal digital signatures}
+\input{sections/9-elgamal-sign.tex}
+\clearpage
+
+\section{Iterated hash functions, birthday paradox}
+\input{sections/10-it-hash-bday.tex}
+\clearpage
+
+\section{The discrete logarithm problem modulo p and Diffie-Hellman key agreement}
+\input{sections/11-dlp-diffie-hellman.tex}
+\clearpage
+
+\section{Secret Sharing}
+\input{sections/12-sec-sharing.tex}
+
+
+\end{document}
