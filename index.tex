@@ -23,6 +23,7 @@
 \usepackage{hyperref}
 
 \newcommand{\code}[1]{\texttt{#1}}
+\newcommand\unfootnote[1]{\let\thefootnote\relax\footnotetext{#1}}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -92,6 +93,5 @@
 
 \section{Secret Sharing}
 \input{sections/12-sec-sharing.tex}
-
 
 \end{document}
