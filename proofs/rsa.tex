@@ -1,0 +1,50 @@
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+
+\textbf{Public:} $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
+
+\textbf{Private:} $(p, q, d)$ where $d \in \mathbb{Z}_{\phi(n)}^*$, such that
+\[ ed \equiv 1 \mod \phi(n) \]
+
+Define $\phi(n) = (p-1)(q-1)$. We have that
+\begin{align*}
+  ed \equiv 1 \mod \phi(n)\\
+  \Rightarrow ed = 1 + k(p - 1)(q - 1)
+\end{align*}
+
+We need to prove that $(m^e)^d \equiv m \mod$ since that is enc and dec using RSA.
+
+
+\begin{align*}
+(m^e)^d \equiv m \mod n
+\Rightarrow m^{ed} \equiv m \mod n
+\end{align*}
+
+Chinese remainder says that it is enough to show
+\[ m^{ed} \equiv m \mod p \textbf{ and } m^{ed} \equiv m \mod q \]
+
+Showing for $p$. There are two cases: 1) $m \equiv 0 \mod p$ and 2) $m \not\equiv 0 \mod p$.
+
+\textbf{Case 1}
+\begin{align*}
+m &\equiv 0 \mod p\\
+\Rightarrow m^x &\equiv m \mod p \quad \text{where } x \in \mathbb{Z}
+\end{align*}
+and since $ed \in \mathbb{Z}$ case 1 holds.
+
+\textbf{Case 2}
+\begin{align*}
+m^{ed} &\equiv m \mod p\\
+m^{1 + k(p-1)(q-1)} &\equiv m \mod p\\
+m \cdot m^{k(p-1)(q-1)} &\equiv m \mod p\\
+m \cdot (m^{(p-1)})^{k(q-1)} &\equiv m \mod p
+\end{align*}
+
+From Fermats little theorem we know that $x^{p-1} \equiv x \mod p$ for prime $p$. Thus
+\begin{align*}
+m \cdot 1^{k(q-1)} &\equiv m \mod p\\
+m \cdot 1 &\equiv m \mod p\\
+m &\equiv m \mod p
+\end{align*}

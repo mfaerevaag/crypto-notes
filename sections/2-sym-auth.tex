@@ -3,8 +3,56 @@
 %%% TeX-master: "../index"
 %%% End:
 
-\subsection{Recommended}
-\begin{itemize}
-\item Show example (e.g. RSA)
-\item Alice-Bob diagram
-\end{itemize}
+\subsection{Agenda}
+\begin{enumerate}
+\item Purpose of authentication
+\item What is symmetric key auth?
+\item What is public key auth?
+\item RSA authentication
+\end{enumerate}
+
+\subsubsection{Purpose of authentication}
+Retain data integrity. Bob can validate that a message is the original one sent from Alice, i.e. that Eve has not forged it. \emph{Not} about keeping data secret.
+
+\subsubsection{What is symmetric key auth?}
+Known as \texttt{MAC}, Message Authentication Code.
+
+\begin{center}
+\includegraphics{images/2-sym-AB.pdf}
+\end{center}
+
+\textbf{Disadvantages:} key must be shared over secure channel, requires unique key for pairs of commuicating people.
+
+\textbf{Advantages:} simple to use, fast computations
+
+\subsubsection{What is public key auth?}
+Signs with \emph{private} key, verifies with \emph{public} key (reverse of pub-key encryption/decryptions).
+
+\begin{center}
+\includegraphics{images/2-pub-AB.pdf}
+\end{center}
+
+\textbf{Advantages:} no shared key (does not require secure channel to exchange keys), same public key can be used by everyone.
+
+\textbf{Disadvantages:} existential forgery is trivial, Eve can choose any $s$ and compute corresponding $e_{pub}(s) = m$. Hash functions can solve this.
+
+\subsubsection{RSA authentication}
+$H$ is a publicly known hash function, must be secure.
+
+\textbf{Public key:} $(n, e)$ where $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
+
+\textbf{Private key:} $(p, q, d)$ where $d \in \mathbb{Z}_{\phi(n)}^*$, such that
+\[ ed \equiv 1 \mod \phi(n) \]
+
+We use $\phi(n)$ because it is hard to compute given only $n$, but easy with known $p, q$ since $\phi(n) = (p-1)(q-1)$, thus $d$ cannot be easily computed given just $n$ (must prime factor $n$).
+
+\textbf{Signature:} $m$ is the message and $x = H(m) \in \mathbb{Z}_n$. Signature is
+\[ s = x^d \mod n \]
+
+\textbf{Verification:} $m$ is the message, signature is $s \in \mathbb{Z}_n$. Accept if
+\[ x \equiv s^e \mod n \]
+
+$H$ is used to prevent the trivial forgey where Eve can choose any $s$ such that $s = e_{pub}(m)$. She cannot do this since she would need a preimage for $H(m)$ as $s$ otherwise does not sign $H(m)$ but $m$.
+
+\subsubsection{Proof of RSA}
+\input{proofs/rsa.tex}
