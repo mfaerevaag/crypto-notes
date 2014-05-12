@@ -3,12 +3,58 @@
 %%% TeX-master: "../index"
 %%% End:
 
-\subsection{Recommended}
-\begin{itemize}
-\item Explain Vigenere
-\item Must include cryptoanalysis
-  \begin{itemize}
-  \item Remember formulas
-  \item Index of coincidence
-  \end{itemize}
-\end{itemize}
+\subsection*{Agenda}
+% \begin{itemize}
+% \item Explain Vigenere
+% \item Must include cryptoanalysis
+%   \begin{itemize}
+%   \item Remember formulas
+%   \item Index of coincidence
+%   \end{itemize}
+% \end{itemize} 
+
+\begin{enumerate}
+\item Poly alphabetic substitution cipher.
+\item Vigenere crypto system
+\item Cryptanalysis
+\end{enumerate}
+
+\subsection{Poly alphabetic substitution cipher}
+
+Poly alphabetic substitution cipher is an extension of mono alphabetic
+substitution ciphers, where one character is encryptet at a time. Most common is Caesar system.
+
+Poly alphabetic systems encrypts more than one character, using
+multiple alphabets for security.
+
+\subsection{Vigenere crypto system}
+
+Assume $\mathcal{P} = \mathcal{C} = \mathcal{K} =
+\mathbb{Z}_{26}^j$. Encryption and decryption will be:
+\begin{align*}
+  e_{k}(m) \; &= \; (m_0+k_0 +m_1+k_1 + \ldots
+  +m_{j-1}+k_{j-1} )  \mod 26\\
+  d_{k}(c) \; &= \; (c_0-k_0 +c_1-k_1 + \ldots +c_{j-1}-k_{j-1} ) \mod 26
+\end{align*}
+where it's given that $m=(m_0,m_1 \ldots,m_{j-1})$, $=(k_0,k_1
+\ldots,k_{j-1})$ and $m=(c_0,c_1 \ldots,c_{j-1})$. If the plaintext is
+longer than $j$, the plaintext is split into $j$ blocks. If last block
+is less than $j$ characters, part of the key $k$ are used for
+encryption.
+
+The values of the secret key is $26^j$. Cryptanalysis is still easy,
+if the value of $j$ isn't too large.
+\subsection{Cryptanalysis}
+To break the Vigenere cryptosystem we must look at the probability
+distribution of the English language. 
+\subsubsection{IOC - Index of coincidence}
+
+\[ I_c(\vec{x}) =
+\frac{\sum^{m-1}_{i=0}\binom{f_i}{2}}{\binom{n}{2}}=
+\frac{\sum^{m-1}_{i=0}f_i(f_i - 1)}{n(n-1)}\] 
+n
+For the English language:
+
+\[ I_c(\vec{x}) =
+\frac{\sum^{25}_{i=0}f_i(f_i - 1)}{n(n-1)} \approx
+\sum^{25}_{i0}(1/26)^2= 1/26 \simeq 0.038\] 
