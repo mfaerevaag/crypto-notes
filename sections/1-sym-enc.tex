@@ -8,14 +8,16 @@
 % Mention modern algorithm (e.g. AES, Triple-DES)
 % Benefits of public-key encryption (no key sharing)
 % Show public-key example with RSA and Alice-Bob diagram
+
 \subsection{Agenda}
 \begin{enumerate}
 \item Symmetric-key encryption
 \item Symmetric- vs. public-key encryption
 \item RSA
 \end{enumerate}
+
 \subsection{Symmetric-key encryption}
-\subsubsection{Set up}
+\subsubsection*{Set up}
 \begin{itemize}
 \item $m \in \mathcal{P}$ is the plaintext
 \item $k \in \mathcal{K}$ is the key
@@ -32,7 +34,7 @@
   \label{fig:sym-enc}
 \end{figure}
 
-\subsubsection{Modern implementations}
+\subsubsection*{Modern implementations}
 \begin{description}
 \item[DES] 64-bit block cipher with 56-bit key. Due to small key,
   exhaustive search is a possibility. Therefore, \emph{Triple-DES} was
@@ -40,7 +42,7 @@
 \item[AES] 128-bit block cipher with 128 to 256-bit key.
 \end{description}
 
-\subsection{Symmetric- vs. public-key encryption}
+\subsection*{Symmetric- vs. public-key encryption}
 \begin{description}
 \item[Pros] Faster and easier to implement
 \item[Cons] Requires both parties can access the secret key. Impossible?
@@ -57,7 +59,7 @@
 \item d = is the multiplicative inverse of $e\; mod\;\phi (n)$
 \end{itemize}
 
-\subsubsection{Weakness}
+\subsubsection*{Weakness}
 \begin{itemize}
 \item Attacker can get factors of $n$
   \begin{itemize}
@@ -87,7 +89,7 @@
   \end{align*}
 \end{itemize}
 
-\subsubsection{Example}
+\subsubsection*{Example}
 Alice and Bob each have their individual private- and public-keys. If
 Alice wants to send an encrypted message to Bob she needs his
 public-key which she gets automatically.
@@ -101,5 +103,5 @@ it by $Dec(c_{Alice}) = c^{d_{Bob}}_{Alice} \mod n_{Bob}$.
 
 Bob now has Alice’s message $m$.
 
-\subsubsection{Proof}
+\subsubsection*{Proof}
 \input{proofs/rsa.tex}
