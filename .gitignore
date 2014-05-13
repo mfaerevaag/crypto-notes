@@ -3,5 +3,6 @@
 *.log
 *.out
 *.pdf
+!images/*.pdf
 *.toc
 auto
