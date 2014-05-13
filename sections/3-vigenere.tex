@@ -3,20 +3,17 @@
 %%% TeX-master: "../index"
 %%% End:
 
-\subsection*{Agenda}
-% \begin{itemize}
-% \item Explain Vigenere
-% \item Must include cryptoanalysis
-%   \begin{itemize}
-%   \item Remember formulas
-%   \item Index of coincidence
-%   \end{itemize}
-% \end{itemize} 
+% Recommended:
+% Explain Vigenere
+% Must include cryptoanalysis
+% Remember formulas
+% Index of coincidence
 
+\subsection{Agenda}
 \begin{enumerate}
-\item Poly alphabetic substitution cipher.
-\item Vigenere crypto system
-\item Cryptanalysis
+\item Polyalphabetic substitution cipher
+\item Vigenere
+\item Cryptoanalysis
 \end{enumerate}
 
 \subsection{Poly alphabetic substitution cipher}
@@ -46,15 +43,15 @@ The values of the secret key is $26^j$. Cryptanalysis is still easy,
 if the value of $j$ isn't too large.
 \subsection{Cryptanalysis}
 To break the Vigenere cryptosystem we must look at the probability
-distribution of the English language. 
+distribution of the English language.
 \subsubsection{IOC - Index of coincidence}
 
 \[ I_c(\vec{x}) =
 \frac{\sum^{m-1}_{i=0}\binom{f_i}{2}}{\binom{n}{2}}=
-\frac{\sum^{m-1}_{i=0}f_i(f_i - 1)}{n(n-1)}\] 
+\frac{\sum^{m-1}_{i=0}f_i(f_i - 1)}{n(n-1)}\]
 n
 For the English language:
 
 \[ I_c(\vec{x}) =
 \frac{\sum^{25}_{i=0}f_i(f_i - 1)}{n(n-1)} \approx
-\sum^{25}_{i0}(1/26)^2= 1/26 \simeq 0.038\] 
+\sum^{25}_{i0}(1/26)^2= 1/26 \simeq 0.038\]
