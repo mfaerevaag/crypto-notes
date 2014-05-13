@@ -17,11 +17,11 @@
 \subsection{Symmetric-key encryption}
 \subsubsection{Set up}
 \begin{itemize}
-  \item $m \in \mathcal{P}$ is the plaintext
-  \item $k \in \mathcal{K}$ is the key
-  \item $c \in \mathcal{C}$ is the ciphertext
-  \item $e_k(m)$ encryption function
-  \item $d_k(c)$ decryption function
+\item $m \in \mathcal{P}$ is the plaintext
+\item $k \in \mathcal{K}$ is the key
+\item $c \in \mathcal{C}$ is the ciphertext
+\item $e_k(m)$ encryption function
+\item $d_k(c)$ decryption function
 \end{itemize}
 
 \begin{figure}[H]
@@ -46,53 +46,48 @@
 \item[Cons] Requires both parties can access the secret key. Impossible?
 \end{description}
 
-\subsection*{RSA}
+\subsection{RSA}
 \begin{itemize}
-
-\item Public key = (n,e) 
+\item Public key = (n,e)
 \item Private key = (p,q,d) where $ed \equiv 1 \mod \phi (n)$.
 \item Encryption is done by $Enc(m)= m^e \mod n$.
-\item Decryption is done by $Dec(c)=c^d \mod n$.	
+\item Decryption is done by $Dec(c)=c^d \mod n$.
 \item n = 2 primes p and q (pq=n)(big primes makes encryption safer)
 \item e = is an integer $\in \mathbb{Z}^*_{\phi (n)}$, where $\phi (n)=(p-1)(q-1)$
 \item d = is the multiplicative inverse of $e\; mod\;\phi (n)$
-
 \end{itemize}
 
 \subsubsection{Weakness}
 \begin{itemize}
 \item Attacker can get factors of $n$
-\begin{itemize}
-\item If attacker can factor $n$ then he can find $d$ same way that
-  the system computes it
-\end{itemize}
+  \begin{itemize}
+  \item If attacker can factor $n$ then he can find $d$ same way that
+    the system computes it
+  \end{itemize}
 \item Attacker finds $\phi (n)$, then factors $n$
-\begin{itemize}
-\item If $n$ is small attacker can setup an equation with two unknowns
-  that uses $\phi (n)=(p-1)(q-1)$ since he knows $n=pq$
-\begin{align*}
-\phi(n) &= n - p - q + 1 \\
-p &= n - \phi(n) - q + 1 \quad \text{since } p = \frac{n}{q} \\
-\frac{n}{q} &= n - \phi(n) - q + 1 \\
-0 &= q^2 + q(\phi(n) - n - 1) + n
-\end{align*}
-\end{itemize}
+  \begin{itemize}
+  \item If $n$ is small attacker can setup an equation with two unknowns
+    that uses $\phi (n)=(p-1)(q-1)$ since he knows $n=pq$
+    \begin{align*}
+      \phi(n) &= n - p - q + 1 \\
+      p &= n - \phi(n) - q + 1 \quad \text{since } p = \frac{n}{q} \\
+      \frac{n}{q} &= n - \phi(n) - q + 1 \\
+      0 &= q^2 + q(\phi(n) - n - 1) + n
+    \end{align*}
+  \end{itemize}
 \item Attacker finds the decryption exponent $d$, then factors $n$
-\begin{itemize}
-\item If the attacker finds $d$ it is easy to factor $n$
-\end{itemize}
+  \begin{itemize}
+  \item If the attacker finds $d$ it is easy to factor $n$
+  \end{itemize}
 \item If $c_1$ and $c_2$ are encrypted with the same key then:
-\begin{align*}
-&(c_1c_2)^d \mod n = (c_1^d) (c_2^d) \mod n \\
-&\text{which means} \\
-&(c_1^d) (c_2^d) \mod n = m_1m_2 \mod n
-\end{align*}
-
-
-
+  \begin{align*}
+    &(c_1c_2)^d \mod n = (c_1^d) (c_2^d) \mod n \\
+    &\text{which means} \\
+    &(c_1^d) (c_2^d) \mod n = m_1m_2 \mod n
+  \end{align*}
 \end{itemize}
-\subsubsection{Example}
 
+\subsubsection{Example}
 Alice and Bob each have their individual private- and public-keys. If
 Alice wants to send an encrypted message to Bob she needs his
 public-key which she gets automatically.
@@ -105,5 +100,6 @@ message was encrypted with his public-key, his private-key can decrypt
 it by $Dec(c_{Alice}) = c^{d_{Bob}}_{Alice} \mod n_{Bob}$.
 
 Bob now has Alice’s message $m$.
+
 \subsubsection{Proof}
 \input{proofs/rsa.tex}
