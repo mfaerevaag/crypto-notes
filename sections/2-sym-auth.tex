@@ -15,10 +15,10 @@
 \item RSA authentication
 \end{enumerate}
 
-\subsubsection{Purpose of authentication}
+\subsection{Purpose of authentication}
 Retain data integrity. Bob can validate that a message is the original one sent from Alice, i.e. that Eve has not forged it. \emph{Not} about keeping data secret.
 
-\subsubsection{What is symmetric key auth?}
+\subsection{What is symmetric key auth?}
 Known as \texttt{MAC}, Message Authentication Code.
 
 \begin{center}
@@ -29,7 +29,7 @@ Known as \texttt{MAC}, Message Authentication Code.
 
 \textbf{Advantages:} simple to use, fast computations
 
-\subsubsection{What is public key auth?}
+\subsection{What is public key auth?}
 Signs with \emph{private} key, verifies with \emph{public} key (reverse of pub-key encryption/decryptions).
 
 \begin{center}
@@ -40,7 +40,7 @@ Signs with \emph{private} key, verifies with \emph{public} key (reverse of pub-k
 
 \textbf{Disadvantages:} existential forgery is trivial, Eve can choose any $s$ and compute corresponding $e_{pub}(s) = m$. Hash functions can solve this.
 
-\subsubsection{RSA authentication}
+\subsection{RSA authentication}
 $H$ is a publicly known hash function, must be secure.
 
 \textbf{Public key:} $(n, e)$ where $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
@@ -58,5 +58,5 @@ We use $\phi(n)$ because it is hard to compute given only $n$, but easy with kno
 
 $H$ is used to prevent the trivial forgey where Eve can choose any $s$ such that $s = e_{pub}(m)$. She cannot do this since she would need a preimage for $H(m)$ as $s$ otherwise does not sign $H(m)$ but $m$.
 
-\subsubsection{Proof of RSA}
+\subsection{Proof of RSA}
 \input{proofs/rsa.tex}
