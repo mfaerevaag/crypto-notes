@@ -8,9 +8,63 @@
 % - Why can $t$-people reconstruct the key?
 % - Why cannot less than $t$-people reconstruct the key?
 
-\subsection{Agenda}
+\subsection*{Agenda}
 \begin{enumerate}
-\item Problem
-\item Shamir's threshold
-\item Key reconstruction
+\item The issue
+\item Shamir's threshold scheme
+\item Key re-construction
+\item Security
 \end{enumerate}
+
+\subsection{The issue}
+Imagine you have encrypted some data using a
+symmetric encryption algorithm. What if you then lost the secret key?
+If the encryption is strong, your data is unrecoverable.
+
+To avoid this you could have given the secret key to one or more
+friends, as a backup. The problem is now is that your friends might
+also lose the key. Also, each of your friends can decrypt your
+important data.
+
+What if you could give  only shares of the secret key to your
+friends, but only need a subset of the shares to reconstruct the
+secret key? Now none of your friends can alone decrypt you data, and
+it doesn't matter if a friend or two loses their share. This is
+\emph{secret sharing}.
+
+\subsection{Shamir's threshold scheme}
+\subsubsection*{Setup}
+\begin{itemize}
+\item $(t, w)$, where $t$ is the threshold and $w$ is the number of shareholders
+\item Participants: Keyholder $H$, shareholders $S_1, \ldots, S_w$
+\item Secret key: $k$
+\item H chooses:
+  \begin{itemize}
+  \item a prime $p$, such that $p \ge w + 1$
+  \item a random polynomial
+    \[
+    f(x) = k + \sum\limits_{j=1}^{t-1} c_jx^j \mod p
+    \]
+    of degree $t-1$, where $c_j$s are chosen at random
+  \end{itemize}
+\item $H$ computes $(x_i, f(x_i))$ for $i  = 1, \ldots, t$
+\end{itemize}
+
+\subsubsection*{Re-construction}
+\begin{figure}[H]
+  \begin{equation}\label{eq:lagrange}
+    f(x) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x-x_j}{x_i-x_j}
+  \end{equation}
+  \label{asdf}
+  \caption{Lagrange Interpolation Formula}
+\end{figure}
+
+\begin{itemize}
+\item Input: $t$ shares $(x_i, y_i)$ for $i = 1, \ldots, t$
+\item $H$ re-constructs the secret key $k$ by using Lagrange Interpolation Formula (\ref{eq:lagrange})
+  \[
+  k = f(0) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x_j}{x_j-x_i}
+  \]
+\end{itemize}
+
+\subsection{Security}
