@@ -22,7 +22,8 @@ Poly alphabetic substitution cipher is an extension of mono alphabetic
 substitution ciphers, where one character is encryptet at a time. Most common is Caesar system.
 
 Poly alphabetic systems encrypts more than one character, using
-multiple alphabets for security.
+multiple alphabets for security. Thus the same plaintext character can
+encrypt to different ciphertext characters.
 
 \subsection{Vigenere crypto system}
 
@@ -42,16 +43,50 @@ encryption.
 The values of the secret key is $26^j$. Cryptanalysis is still easy,
 if the value of $j$ isn't too large.
 \subsection{Cryptanalysis}
+
+\begin{enumerate}
+\item Find probable key period $l$ using IoC
+\item Divide $m$ into $l$ blocks, find probable shift in each using
+  letter distribution
+\item Assemble the plaintext from the blocks
+\end{enumerate}
+
+\subsubsection{IoC --- Index of coincidence}
 To break the Vigenere cryptosystem we must look at the probability
-distribution of the English language.
-\subsubsection{IOC - Index of coincidence}
+distribution of the English language. This is the likehood of picking
+the same letter twice in a row at random.
 
 \[ I_c(\vec{x}) =
 \frac{\sum^{m-1}_{i=0}\binom{f_i}{2}}{\binom{n}{2}}=
 \frac{\sum^{m-1}_{i=0}f_i(f_i - 1)}{n(n-1)}\]
-n
-For the English language:
+
+For a random text the value $I_c$ is
 
 \[ I_c(\vec{x}) =
 \frac{\sum^{25}_{i=0}f_i(f_i - 1)}{n(n-1)} \approx
-\sum^{25}_{i0}(1/26)^2= 1/26 \simeq 0.038\]
+\sum^{25}_{i0}(\frac{1}{26})^2= 1/26 \simeq 0.038\]
+
+And for a natural language english $I_c = 0.065$
+
+Split the text into $l$ blocks and compute $I_c$ for each resulting
+vector. The $l$ that produces $I_c$ values that are closest to natural
+english is likely to be the actual key period.
+
+\subsubsection{Letter distributions}
+
+Given vectors $x_i \ldots x_{l-1}$ we now compute the likely shift
+length of each. That is, for each $x_i$ we do the following.
+
+For each shift $1 \ldots 26$ compute the letter distribution, which is
+the frequency of each letter $A \ldots Z$ in $x_i$. We then compute
+the distance to the distribution of natural English. One way is ``sum
+of squared differences''. Given $\overrightarrow{a}$ and
+$\overrightarrow{b}$ the distance is
+
+\[\Sigma_{n=o}^i (a_n - b_n)^2 \]
+
+We choose the shift that has the smallest distance to natural english.
+
+\subsubsection{Reassembly}
+It is now trivial to reconstruct the full plaintext by appending
+letters from the resulting shifted vectors alternatingly.
