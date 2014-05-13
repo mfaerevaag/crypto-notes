@@ -17,4 +17,20 @@
 \item Proof
 \end{enumerate}
 
+$H$ is a publicly known hash function, must be secure.
+
+\textbf{Public key:} $(n, e)$ where $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
+
+\textbf{Private key:} $(p, q, d)$ where $d \in \mathbb{Z}_{\phi(n)}^*$, such that
+\[ ed \equiv 1 \mod \phi(n) \]
+
+We use $\phi(n)$ because it is hard to compute given only $n$, but easy with known $p, q$ since $\phi(n) = (p-1)(q-1)$, thus $d$ cannot be easily computed given just $n$ (must prime factor $n$).
+
+\textbf{Signature:} $m$ is the message and $x = H(m) \in \mathbb{Z}_n$. Signature is
+\[ s = x^d \mod n \]
+
+\textbf{Verification:} $m$ is the message, signature is $s \in \mathbb{Z}_n$. Accept if
+\[ x \equiv s^e \mod n \]
+
+$H$ is used to prevent the trivial forgey where Eve can choose any $s$ such that $s = e_{pub}(m)$. She cannot do this since she would need a preimage for $H(m)$ as $s$ otherwise does not sign $H(m)$ but $m$.
 \input{proofs/rsa.tex}

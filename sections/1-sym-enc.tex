@@ -48,13 +48,15 @@
 
 \subsection*{RSA}
 \begin{itemize}
-\item Public key = $(n,e)$
-\item Private key = $(p,q,d)$ where $ed \equiv 1 \mod \phi(n)$.
+
+\item Public key = (n,e) 
+\item Private key = (p,q,d) where $ed \equiv 1 \mod \phi (n)$.
 \item Encryption is done by $Enc(m)= m^e \mod n$.
-\item Decryption is done by $Dec(c)=c^d \mod n$.
-\item $n = pq$, where $p$ and $q$ are odd primes (big primes makes encryption safer)
-\item $e \in \mathbb{Z}^*_{\phi (n)}$, where $\phi (n)=(p-1)(q-1)$
-\item $d$ is the multiplicative inverse of $e \mod \phi(n)$
+\item Decryption is done by $Dec(c)=c^d \mod n$.	
+\item n = 2 primes p and q (pq=n)(big primes makes encryption safer)
+\item e = is an integer $\in \mathbb{Z}^*_{\phi (n)}$, where $\phi (n)=(p-1)(q-1)$
+\item d = is the multiplicative inverse of $e\; mod\;\phi (n)$
+
 \end{itemize}
 
 \subsubsection{Weakness}
@@ -90,6 +92,7 @@ p &= n - \phi(n) - q + 1 \quad \text{since } p = \frac{n}{q} \\
 
 \end{itemize}
 \subsubsection{Example}
+
 Alice and Bob each have their individual private- and public-keys. If
 Alice wants to send an encrypted message to Bob she needs his
 public-key which she gets automatically.
@@ -102,6 +105,5 @@ message was encrypted with his public-key, his private-key can decrypt
 it by $Dec(c_{Alice}) = c^{d_{Bob}}_{Alice} \mod n_{Bob}$.
 
 Bob now has Alice’s message $m$.
-
 \subsubsection{Proof}
 \input{proofs/rsa.tex}
