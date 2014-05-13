@@ -1,0 +1,30 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+
+We can ensure that El-Gamal will sign on $\alpha(x)$ due to the
+following:
+
+As $\beta$ is defined as $\beta = \alpha^{a}$ and from the signature, it's given:
+\begin{align*}
+  \gamma &= \alpha^k \mod p \\
+  \delta &= (x - a \gamma)k^{-1} \mod p - 1 \\
+\end{align*}
+And from the verification it's given:
+\[ \beta^{\gamma}\gamma^{\delta} \equiv \alpha^x \mod p\]
+\begin{align*}
+  \alpha^x &\equiv \beta^{\gamma}\gamma^{\delta} \mod p\\
+  &\equiv \alpha^{a^{\gamma}} \gamma^{(x-a\gamma)k^{-1}} \mod p\\
+  &\equiv \alpha^{a\gamma} \alpha^{k(x-a\gamma)k^{-1}} \mod p\\
+  &\equiv \alpha^{a\gamma} \alpha^{x-a\gamma} \mod p\\
+  &\equiv \alpha^{a\gamma} \alpha^{x}\alpha^{-a\gamma} \mod p\\
+  &\equiv \alpha^x \mod p
+\end{align*}
