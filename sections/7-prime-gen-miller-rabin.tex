@@ -14,11 +14,22 @@
 \item Prime generation
 \item Trial division
 \item Miller-Rabin
+\item Crypto-systems that use primes
 \end{enumerate}
 
 \subsection{Prime Generation}
+primes can be guessed we have a method how to approximate number of primes in a interval.
+\begin{align*}
+\frac{\pi (m)}{m/\ln m}
+\end{align*}
+here $\pi (m)$ is all primes that are less than $m$.\\
+To generate a k-bit prime, $m$ we this form of approximation to get $m$.\\ If $m$ lies in the interval $2^{k-1}$ to $2^k-1$ we get:
+\begin{align*}
+\pi (2^k)-\pi (2^{k-1})\approx \frac{2^k}{\ln 2^k}-\frac{2^{k-1}}{\ln 2^{k-1}}\approx \frac{2^{k-1}}{\ln 2^{k-1}}
+\end{align*}
+If we now chose a random m within our interval we now know what the probability of it being a prime is. If we exempt all evens we increase the probability of guessing the prime with a factor of two.
 \subsection{Trial division}
-Trial division is quite simple
+Trial division is quite simple and another way to generate a k-bit prime.
 \begin{itemize}
 \item input an integer m
 \item all primes $r\le \sqrt{m}$
@@ -30,17 +41,27 @@ Trial division is quite simple
 Miller rabin is another method of determining if a number is prime or not. It does not suffer from the weakness of rating Carmichael numbers as primes. When checking for primes we only check odd numbers that are greater than 2.\\
 Miller Rabin needs the following to function
 \begin{itemize}
-\item an odd m to check if prime
+\item An odd m to check if prime
 \item $s$ and $t$ which are found by subtracting 1 from m and dividing with two until result is odd. $s$ is the times we divide by 2 and $t$ is the odd result.
-\item Now we have $m$, $s$, $t$ we now need to compute $b^t\mod m$
-\item $b$ is a random int in the range $0<b<m$
-\item now we have two cases
+\item We have $m$, $s$, $t$ now we need to compute $b^t\mod m$ where $b$ is a random int in the range $0<b<m$
+\item There are the two following cases
 \begin{align*}
 &\mbox{case 1}\\
 &b^t \equiv 1 \mod m\\
 &\mbox{case 2}\\
 &b^{2^{j}t} \equiv -1 \mod m \mbox{ for at least one $j=0,...,s-1$}
 \end{align*}
-\item Even if $m$ succeeds in the rules above we cannot be completely sure if it really is a prime. If Miller Rabin says that $m$ is composit it is. But it can be shown that Miller Rabin has at most 1/4 probability of wrongly assigning a composit a prime. This can be countered with doing Miller Rabin $l$ iterations. This lowers the chance of the algorithm begin wrong by $(\frac{1}{4})^l$
-
+\item Even if $m$ holds the conditions above we cannot be completely sure if it really is a prime. If Miller Rabin says that $m$ is composit it is. But it can be shown that Miller Rabin has at most 1/4 probability of wrongly assigning a composit a prime. This can be countered by doing Miller Rabin several times with different random value $b$. This lowers the chance of the algorithm begin wrong by $(\frac{1}{4})^l$ where $l$ is amount of different b tested.
+\end{itemize}
+\subsubsection*{proof}
+Here is the proof for the conditions
+\begin{itemize}
+\item $m-1=b^{2^st}$
+\item if m is a prime $\Rightarrow$
+\begin{align*}
+1&=b^{m-1}\mod m \Leftrightarrow\\
+&\mbox{we inset $b^{2^st}$}\\
+0&=b^{2^st}-1\mod m \Leftrightarrow\\
+&\mbox{We now expand}\\
+\end{align*}
 \end{itemize}
