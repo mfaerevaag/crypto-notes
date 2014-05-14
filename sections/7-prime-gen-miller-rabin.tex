@@ -14,16 +14,16 @@
 \item Prime generation
 \item Trial division
 \item Miller-Rabin
-\item Crypto-systems that use primes
 \end{enumerate}
 
 \subsection{Prime Generation}
-primes can be guessed we have a method how to approximate number of primes in a interval.
+Primes can be guessed.\\
+We have a method how to approximate number of primes in a interval.
 \begin{align*}
 \frac{\pi (m)}{m/\ln m}
 \end{align*}
-here $\pi (m)$ is all primes that are less than $m$.\\
-To generate a k-bit prime, $m$ we this form of approximation to get $m$.\\ If $m$ lies in the interval $2^{k-1}$ to $2^k-1$ we get:
+Here $\pi (m)$ is all primes that are less than $m$.\\
+To generate a k-bit prime, $m$ we use this approximation to get the probability of finding $m$.\\ If $m$ lies in the interval $2^{k-1}$ to $2^k-1$ we get:
 \begin{align*}
 \pi (2^k)-\pi (2^{k-1})\approx \frac{2^k}{\ln 2^k}-\frac{2^{k-1}}{\ln 2^{k-1}}\approx \frac{2^{k-1}}{\ln 2^{k-1}}
 \end{align*}
@@ -32,10 +32,11 @@ If we now chose a random m within our interval we now know what the probability 
 Trial division is quite simple and another way to generate a k-bit prime.
 \begin{itemize}
 \item input an integer $m$
-\item We devide $m$ with all primes $r\le \sqrt{m}$
+\item We devide $m$ with all primes $r\le \sqrt{m}$ (This is true sice if a factor is larger than $\sqrt{m}$ then it has atleast another factor that is smaller than $\sqrt{m}$)
 \item if $r$ devides $m$ then $m$ isn't prime
 \item if all primes $r$ are coprime with $m$ then it is prime
 \end{itemize}
+This requiers that we have all primes under the number we want to find
 
 \subsection{Miller-Rabin}
 Miller rabin is another method of determining if a number is prime or not. It does not suffer from the weakness of rating Carmichael numbers as primes. When checking for primes we only check odd numbers that are greater than 2.\\
@@ -43,8 +44,29 @@ Miller Rabin needs the following to function
 \begin{itemize}
 \item An odd $m$ to check if prime
 \item $s$ and $t$ which are found by subtracting 1 from m and dividing with two until result is odd. $s$ is the times we divide by 2 and $t$ is the odd result.
-\item We have $m$, $s$, $t$ now we need to compute $b^t\mod m$ where $b$ is a random int in the range $0<b<m$
-\item There are the two following cases
+\item We have $m$, $s$, $t$ now we start with case 1 where we calculate $b^t\mod m$, $b$ is a random int in the range $0<b<m$.\\
+Second case we calculate for $b^{2^st}\mod m$
+\item $m-1=b^{2^st}$ 
+\item if m is a prime $\Rightarrow$
+\begin{align}
+1&=b^{m-1}\mod m \Leftrightarrow\mbox{(fermat's little)}\notag\\
+&\mbox{we inset $b^{2^st}$}\notag\\
+0&=b^{2^st}-1\mod m \Leftrightarrow\notag\\
+&\mbox{We now expand $b^{2^st}-1$ we factor the difference between two squares}\notag \\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-1}t}-1)\mod m\notag\\
+&\mbox{We now expand $b^{2^{s-1}t}-1$}\notag\\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)(b^{2^{s-2}t}-1)\mod m\notag\\
+&\mbox{We keep expanding until $s=0$ then we get $b^{2t}-1$ and we expand a final time}\notag\\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+\notag
+\end{align}
+\item Theorem $2.4.3$ that states if $ab\equiv 0 \mod p$ then $a\equiv 0 \mod p$ or $b\equiv 0 \mod p$. So to check if m is prime the right-hand side of $(1)$ should result in zero.
+\item e.g. if we pretend that $b^{2^{s-1}t}\equiv -1 \mod m$
+\begin{align*}
+0&=(-1+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+0&=(0)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+0&=0\mod m\\
+\end{align*}
 \begin{align*}
 &\mbox{case 1}\\
 &b^t \equiv 1 \mod m\\
@@ -52,29 +74,4 @@ Miller Rabin needs the following to function
 &b^{2^{j}t} \equiv -1 \mod m \mbox{ for at least one $j=0,...,s-1$}
 \end{align*}
 \item Even if $m$ holds the conditions above we cannot be completely sure if it really is a prime. If Miller Rabin says that $m$ is composit it is. But it can be shown that Miller Rabin has at most 1/4 probability of wrongly assigning a composit a prime. This can be countered by doing Miller Rabin several times with different random value $b$. This lowers the chance of the algorithm begin wrong by $(\frac{1}{4})^l$ where $l$ is amount of different b tested.
-\end{itemize}
-\subsubsection*{Proof}
-We show why the condition holds.
-\begin{itemize}
-\item $m-1=b^{2^st}$
-\item if m is a prime $\Rightarrow$
-\begin{align}
-1&=b^{m-1}\mod m \Leftrightarrow\notag\\
-&\mbox{we inset $b^{2^st}$}\notag\\
-0&=b^{2^st}-1\mod m \Leftrightarrow\notag\\
-&\mbox{We now expand $b^{2^st}-1$ we factor the difference between two squares}\notag \\
-0&=(b^{2^{s-1}t}+1)(b^{2^{s-1}t}-1)\mod m\notag\\
-&\mbox{We now expand $b^{2^{s-1}t}-1$}\notag\\
-0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)(b^{2^{s-2}t}-1)\mod m\notag\\
-&\mbox{We keep expanding until $s=1$ so we get $b^{2t}-1$ and we expand a final time}\notag\\
-0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
-\notag
-\end{align}
-\item Theorem $2.4.3$ that states if $ab\equiv 0 \mod p$ then $a\equiv 0 \mod p$ or $b\equiv 0 \mod p$. So to check if m is prime the right-hand side of $(1)$ should result in zero.
-\item e.g. if we preted that $b^{2^{s-1}t}\equiv -1 \mod m$
-\begin{align*}
-0&=(-1+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
-0&=(0)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
-0&=0\mod m\\
-\end{align*}
 \end{itemize}
