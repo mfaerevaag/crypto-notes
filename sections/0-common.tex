@@ -3,9 +3,9 @@
 %%% TeX-master: "../index"
 %%% End:
 
-\subsection{Euclids algorithm}
+\subsection{Euclid's Algorithm}
+\label{sec:euclids-algorithm}
 Finds $\gcd(a, b)$
-
 \begin{align*}
   a = 90,& b = 34 \\
   r_0 &= 90\\
@@ -17,7 +17,8 @@ Finds $\gcd(a, b)$
 \end{align*}
 End because 2 divides 10, thus $\gcd(90, 34) = 2$
 
-\subsection{Euclids extended algorithm}
+\subsection{Euclid's Extended Algorithm}
+\label{sec:euclids-extended}
 \begin{align*}
   s_j = \begin{cases}
     1 &\mbox{if} j = 0\\
@@ -42,15 +43,17 @@ End because 2 divides 10, thus $\gcd(90, 34) = 2$
     4   & 10    & 1     & 2     & -5    \\
     5   & 2     & 1     & -3    & 8     \\
   \end{tabular}
-  \caption{Example run of euclids extended}
+  \caption{Example run of Euclid's Extended Algorithm}
 \end{table}
 
-\subsection{Chinese remainder}
+\subsection{Chinese Remainder Theorem}
+\label{sec:crm}
 If $x^ay^b \equiv z \mod p$, then $(x^a \mod p)(y^b \mod p) \equiv z \mod p$
 
 Also $x^ay^b \mod p = (x^a \mod p)(y^b \mod p) \mod p$
 
-\subsection{Modular multiplicate inverse}
+\subsection{Modular Multiplicative Inverse}
+\label{sec:modular-mult-inverse}
 Modular multiplicative inverse of $a \mod m$ ($a^{-1} \mod m$), is $x$ where
 \[
 ax \equiv 1 \mod m
@@ -60,13 +63,15 @@ $a$ must be ``coprime'' to $m$ ($\gcd(a, m) = 1$).
 
 \textbf{Ex} $3^{-1} \mod m = 4$, because $3 \cdot 4 = 12 \equiv 1 \mod 4$
 
-Can be found using Euclids extended algorithm
+Can be found using Euclid's Extended Algorithm~(\ref{sec:euclids-extended}).
 
 
-\subsection{Eulers $\phi$}
-Defines the number of $a \in \mathbb{Z}_p$ for which $\gcd(a, p) = 1$, ie number of coprimes to $p$ in $\mathbb{Z}_p$.
+\subsection{Euler's $\phi$-function}
+\label{sec:eulers-phi}
+Defines the number of $a \in \mathbb{Z}_p$ for which $\gcd(a, p) = 1$,
+e.i. number of coprimes to $p$ in $\mathbb{Z}_p$.
 
-\subsection{Fermats little theorem}
+\subsection{Fermat's Little Theorem}
 \label{sec:fermats-little}
 For all $b \in \mathbb{Z}_p^*$ it holds that $b^{p-1} \equiv 1 \mod
 p$. $p$ must be a prime.
