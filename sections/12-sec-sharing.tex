@@ -10,21 +10,12 @@
 
 \subsection*{Agenda}
 \begin{enumerate}
-\item The issue
+\item Purpose
 \item Shamir's threshold scheme
 \item Key re-construction
 \end{enumerate}
 
-\subsection{The issue}
-Imagine you have encrypted some data using a
-symmetric encryption algorithm. What if you then lost the secret key?
-If the encryption is strong, your data is unrecoverable.
-
-To avoid this you could have given the secret key to one or more
-friends, as a backup. The problem is now is that your friends might
-also lose the key. Also, each of your friends can decrypt your
-important data.
-
+\subsection{Purpose}
 What if you could give  only shares of the secret key to your
 friends, but only need a subset of the shares to reconstruct the
 secret key? Now none of your friends can alone decrypt you data, and
