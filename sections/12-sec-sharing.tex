@@ -13,7 +13,6 @@
 \item The issue
 \item Shamir's threshold scheme
 \item Key re-construction
-\item Security
 \end{enumerate}
 
 \subsection{The issue}
@@ -62,9 +61,78 @@ it doesn't matter if a friend or two loses their share. This is
 \begin{itemize}
 \item Input: $t$ shares $(x_i, y_i)$ for $i = 1, \ldots, t$
 \item $H$ re-constructs the secret key $k$ by using Lagrange Interpolation Formula (\ref{eq:lagrange})
-  \[
-  k = f(0) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x_j}{x_j-x_i}
-  \]
+  \[ k = f(0) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x_j}{x_j-x_i} \]
 \end{itemize}
 
-\subsection{Security}
+\textbf{$t$ shareholders} \\
+There is only one polynomial $f(x)$ over $\mathbb{Z}_p$ of degree at
+most $t-1$, such that $f(x_i) = y_i$ for $i = 1,\ \dots,\
+t$. Therefore, $t$ shareholders with the shares $\{(x_1,y_1),\
+(x_2,y_2),\ \ldots,\ (x_t,y_t)\}$, can re-construct the polynomial
+$f(x)$ using the Lagrange Interpolation Formula~(\ref{eq:lagrange}) and
+compute the secret key for $f(0)$.
+
+Further, if we describe the shares as follows
+\begin{equation}
+  \begin{pmatrix}
+    1      & x_1    & x_1^2    & \cdots & x_1^{t-1} \\
+    1      & x_2    & x_2^2    & \cdots & x_2^{t-1} \\
+    \cdots & \cdots & \cdots  & \cdots & \cdots \\
+    1      & x_{t-1} & x_{t-1}^2 & \cdots & x_{t-1}^{t-1} \\
+    1      & x_t    & x_t^2    & \cdots & x_t^{t-1}
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_0 \\
+    c_1 \\
+    c_2 \\
+    \cdots \\
+    c_{t-1}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    y_0 \\
+    y_1 \\
+    y_2 \\
+    \cdots \\
+    y_t
+  \end{pmatrix} \mod p
+\end{equation}
+
+Since $p$ is assumed to be a prime, and since $x_i \not= x_j$ for $1 \le i
+< j \le t$, Theorem 2.4.3 tells us that the determinant of the matrix
+is nonzero. As we also know that any nonzero element modulo $p$ (a
+prime) has a multiplicative inverse, so the matrix above can be
+inverted. Thus, re-constructing the polynomial $f(x)$.
+\\
+
+\textbf{$t-1$ shareholders} \\
+If $t-1$ shareholders pool their shares, denoted $\{(x_1,y_1),\
+(x_2,y_2),\ \ldots,\ (x_{t-1},y_{t-1})\}$, and determine that $f(0) = k'$.
+
+\begin{equation}
+  \begin{pmatrix}
+    1      & x_1    & x_1^2    & \cdots & x_1^{t-1} \\
+    1      & x_2    & x_2^2    & \cdots & x_2^{t-1} \\
+    \cdots & \cdots & \cdots  & \cdots & \cdots \\
+    1      & x_{t-1} & x_{t-1}^2 & \cdots & x_{t-1}^{t-1} \\
+    1      & 0      & 0       & \cdots & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    c_0 \\
+    c_1 \\
+    c_2 \\
+    \cdots \\
+    c_{t-1}
+  \end{pmatrix} =
+  \begin{pmatrix}
+    y_0 \\
+    y_1 \\
+    y_2 \\
+    \cdots \\
+    k'
+  \end{pmatrix} \mod p
+\end{equation}
+
+As for the same argument as above, for any value of $k'$ we can
+re-construct an unique polynomial that could have generated their
+shares, for which $f(0) = k'$. Hence, the shareholders have no
+information about the value of the secret key.
