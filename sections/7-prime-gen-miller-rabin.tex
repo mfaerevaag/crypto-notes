@@ -31,17 +31,17 @@ If we now chose a random m within our interval we now know what the probability 
 \subsection{Trial division}
 Trial division is quite simple and another way to generate a k-bit prime.
 \begin{itemize}
-\item input an integer m
-\item all primes $r\le \sqrt{m}$
-\item if $r$ devides $m$ then m isn't prime
-\item if all primes under are coprime then $m$ is prime
+\item input an integer $m$
+\item We devide $m$ with all primes $r\le \sqrt{m}$
+\item if $r$ devides $m$ then $m$ isn't prime
+\item if all primes $r$ are coprime with $m$ then it is prime
 \end{itemize}
 
 \subsection{Miller-Rabin}
 Miller rabin is another method of determining if a number is prime or not. It does not suffer from the weakness of rating Carmichael numbers as primes. When checking for primes we only check odd numbers that are greater than 2.\\
 Miller Rabin needs the following to function
 \begin{itemize}
-\item An odd m to check if prime
+\item An odd $m$ to check if prime
 \item $s$ and $t$ which are found by subtracting 1 from m and dividing with two until result is odd. $s$ is the times we divide by 2 and $t$ is the odd result.
 \item We have $m$, $s$, $t$ now we need to compute $b^t\mod m$ where $b$ is a random int in the range $0<b<m$
 \item There are the two following cases
@@ -53,15 +53,28 @@ Miller Rabin needs the following to function
 \end{align*}
 \item Even if $m$ holds the conditions above we cannot be completely sure if it really is a prime. If Miller Rabin says that $m$ is composit it is. But it can be shown that Miller Rabin has at most 1/4 probability of wrongly assigning a composit a prime. This can be countered by doing Miller Rabin several times with different random value $b$. This lowers the chance of the algorithm begin wrong by $(\frac{1}{4})^l$ where $l$ is amount of different b tested.
 \end{itemize}
-\subsubsection*{proof}
-Here is the proof for the conditions
+\subsubsection*{Proof}
+We show why the condition holds.
 \begin{itemize}
 \item $m-1=b^{2^st}$
 \item if m is a prime $\Rightarrow$
+\begin{align}
+1&=b^{m-1}\mod m \Leftrightarrow\notag\\
+&\mbox{we inset $b^{2^st}$}\notag\\
+0&=b^{2^st}-1\mod m \Leftrightarrow\notag\\
+&\mbox{We now expand $b^{2^st}-1$ we factor the difference between two squares}\notag \\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-1}t}-1)\mod m\notag\\
+&\mbox{We now expand $b^{2^{s-1}t}-1$}\notag\\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)(b^{2^{s-2}t}-1)\mod m\notag\\
+&\mbox{We keep expanding until $s=1$ so we get $b^{2t}-1$ and we expand a final time}\notag\\
+0&=(b^{2^{s-1}t}+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+\notag
+\end{align}
+\item Theorem $2.4.3$ that states if $ab\equiv 0 \mod p$ then $a\equiv 0 \mod p$ or $b\equiv 0 \mod p$. So to check if m is prime the right-hand side of $(1)$ should result in zero.
+\item e.g. if we preted that $b^{2^{s-1}t}\equiv -1 \mod m$
 \begin{align*}
-1&=b^{m-1}\mod m \Leftrightarrow\\
-&\mbox{we inset $b^{2^st}$}\\
-0&=b^{2^st}-1\mod m \Leftrightarrow\\
-&\mbox{We now expand}\\
+0&=(-1+1)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+0&=(0)(b^{2^{s-2}t}+1)...(b^{2^t}+1)(b^{2^t}-1)\mod m\\
+0&=0\mod m\\
 \end{align*}
 \end{itemize}
