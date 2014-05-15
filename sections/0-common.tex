@@ -97,4 +97,15 @@ From the before mentioned theorem, it is also known that the left-hand
 side has a multiplicative inverse due to $1 \cdot 2 \cdot \ldots \cdot
 (p - 1) \not \equiv 0 \mod p$. If that is multiplied on each side we
 get Fermat's Little Theorem:
-\[b^{p-1} \equiv 1 \mod p\]
+\[b^{p-1} \equiv 1 \mod p \]
+
+\subsection{Theorem 2.4.3}
+Let $p$ be a prime and let $a,b \in \mathbb{Z}$ Then it holds that
+\[ ab \equiv 0 \mod p \Rightarrow a \equiv 0 \mod p \; \lor \; b
+\equiv 0 \mod p\]
+\subsubsection*{Proof}
+Assume $ab\equiv 0 \mod p$. If $a \equiv 0 \mod p$ we are done. So we
+need to show if $a \not \equiv 0 \mod p$ then $b \equiv 0 \mod p$. But
+since $a \not \equiv 0$ $a \in \mathbb{Z}_p^*$ and it has a
+multiplicative inverse modulo $p$ $ac \equiv 1 \mod p$. Thus we can
+see $b = 1b = (ca)b=c(ab)=c0=0$.
