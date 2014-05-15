@@ -13,6 +13,7 @@
 \item DLP
 \item Diffie-Hellmann
 \item Man-in-the-Middle
+\item Authenticated Diffie-Hellmann
 \end{enumerate}
 
 \subsection{DLP}
@@ -48,6 +49,7 @@ For Eve to exploit this attack, she has to intercept all transmissions
 after the key-agreement has been made, and re-encrypt the messages
 because Alice's and Bob's keys \emph{probably} doesn't match.
 
+\subsection{Authenticated Diffie-Hellman}
 To prevent MITM attacks, one can use public-key authentication. This
 requires that Alice and Bob have each others (certified) public-keys.
 \begin{figure}[H]
