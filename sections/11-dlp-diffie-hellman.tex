@@ -14,5 +14,53 @@
 \item Diffie-Hellmann
 \item Man-in-the-Middle
 \end{enumerate}
+
 \subsection{DLP}
 \input{proofs/dlp.tex}
+
+\subsection{Diffie-Hellmann Key Agreement}
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=12cm]{images/11-diffie}
+    \caption{General model of Diffie-Hellmann Key Agreement}
+  \end{centering}
+  \label{fig:diffie}
+\end{figure}
+
+This keys will now match because exponentiation is commutative:
+\begin{align*}
+  (\alpha^b)^a &\equiv (\alpha^a)^b \mod p \\
+  \alpha^{ab} &\equiv \alpha^{ab} \mod p
+\end{align*}
+
+\subsection{Man-in-the-Middle}
+Diffie-Hellman is only secure against \emph{passive} adversaries. An
+active adversary could simply intercept the transmissions, and switch
+the values with her self picked exponents.
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=12cm]{images/11-diffie-mitm}
+    \caption{Model of Man-in-the-Middle attack on Diffie-Hellmann Key Agreement}
+  \end{centering}
+  \label{fig:diffie-mitm}
+\end{figure}
+For Eve to exploit this attack, she has to intercept all transmissions
+after the key-agreement has been made, and re-encrypt the messages
+because Alice's and Bob's keys \emph{probably} doesn't match.
+
+To prevent MITM attacks, one can use public-key authentication. This
+requires that Alice and Bob have each others (certified) public-keys.
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=12cm]{images/11-auth-diffie}
+    \caption{Model of Authenticated Diffie-Hellman Key Agreement}
+  \end{centering}
+  \label{fig:auth-diffie}
+\end{figure}
+
+The key can now be authenticated with:
+\begin{align*}
+  K &= (\alpha^b)^a \mod p \\
+  \textbf{iff.:}& \\
+  \beta_b &= ver_{B_{pub}}(sig_B(\beta_b))
+\end{align*}
