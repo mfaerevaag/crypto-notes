@@ -54,17 +54,15 @@ Also $x^ay^b \mod p = (x^a \mod p)(y^b \mod p) \mod p$
 
 \subsection{Modular Multiplicative Inverse}
 \label{sec:modular-mult-inverse}
-Modular multiplicative inverse of $a \mod m$ ($a^{-1} \mod m$), is $x$ where
-\[
-ax \equiv 1 \mod m
-\]
+Modular multiplicative inverse of $a \mod m$ is $x$ in
+\[ ax \equiv 1 \mod m \]
+where $x = a^{-1} \mod m$.
 
 $a$ must be ``coprime'' to $m$ ($\gcd(a, m) = 1$).
 
 \textbf{Ex} $3^{-1} \mod m = 4$, because $3 \cdot 4 = 12 \equiv 1 \mod 4$
 
 Can be found using Euclid's Extended Algorithm~(\ref{sec:euclids-extended}).
-
 
 \subsection{Euler's $\phi$-function}
 \label{sec:eulers-phi}
@@ -74,22 +72,29 @@ e.i. number of coprimes to $p$ in $\mathbb{Z}_p$.
 \subsection{Fermat's Little Theorem}
 \label{sec:fermats-little}
 For all $b \in \mathbb{Z}_p^*$ it holds that $b^{p-1} \equiv 1 \mod
-p$. $p$ must be a prime.
+p$, where $p$ is a prime.
+
 \subsubsection*{Proof}
-The set of elements $\mathbb{Z}_p^*$ is ${1,2,3\ldots,p-1}$. By
-multiplying an element $b\in \mathbb{Z}_p^*$ onto all elements, we get
-the set $b,2b,\ldots,b(p-1) \mod p$. Since we know that none of the
-elements is congruent to zero modulo $p$ from the theorem $ab \equiv 0
-\mod p$ if $a \lor b \equiv 0 \mod p$. From that it's also known that
-both sets is equal. Since multiplication works both ways, it can be
-said that:
+Given the set
+\[ \mathbb{Z}_p^* = \{1,2,3,\ldots,p-1\} \]
+
+we can multiply some element $b \in \mathbb{Z}_p^*$ onto all elements,
+and get the set
+\[ \{b,2b,\ldots,b(p-1)\} \mod p \]
+since we know that none of the elements is congruent to zero modulo
+$p$ from the theorem $ab \equiv 0 \mod p$ if $a \lor b \equiv 0 \mod
+p$.
+
+From that it is also known that both sets are equal. Since
+multiplication is commutative, we get:
 \begin{align*}
   1 \cdot 2 \cdot \ldots \cdot (p - 1) \mod p &= b \cdot 2b \cdot \ldots
   \cdot b(p-1) \mod p\\
   &= b^{p-1}(1\cdot 2 \cdot \ldots \cdot (p - 1)) \mod p
 \end{align*}
-From the before mentioned theorem, it's also known that the left hand
+
+From the before mentioned theorem, it is also known that the left-hand
 side has a multiplicative inverse due to $1 \cdot 2 \cdot \ldots \cdot
 (p - 1) \not \equiv 0 \mod p$. If that is multiplied on each side we
-get the following:
+get Fermat's Little Theorem:
 \[b^{p-1} \equiv 1 \mod p\]
