@@ -28,3 +28,11 @@ And from the verification it's given:
   &\equiv \alpha^{a\gamma} \alpha^{x}\alpha^{-a\gamma} \mod p\\
   &\equiv \alpha^x \mod p
 \end{align*}
+Because of Fermat's little theorem the following is possible:
+if $\alpha\in \mathbb{Z}_{p'}^*$:
+\begin{align*}
+  \alpha^{p-1} &\equiv 1 \mod p\\
+  \alpha^p &\equiv \alpha \mod p\\
+  \texttt{then}\\
+  \alpha^x \mod p &\equiv \alpha^{x \mod p-1} \mod p
+\end{align*}
