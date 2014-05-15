@@ -47,51 +47,41 @@ This requires that we have all primes under the number we want to find.
 
 \subsection{Miller-Rabin}
 Miller-Rabin is another method of determining if a number is prime or
-not. It does not suffer from the weakness of rating Carmichael numbers
-as primes. When checking for primes we only check odd numbers that are
-greater than 2.
+not. It is based on the principles of Fermat's Little Theorem, so in
+principle it can rate pseudoprimes as primes, but since the algorithm
+runs over multiple iterations, the probability of yielding a
+false-positive becomes very small.
 
-\subsubsection*{Setup}
-\begin{itemize}
-\item An odd $m$ to check if prime
-\item $s$ and $t$ which are found by subtracting 1 from $m$ and
-  dividing with two until result is odd. $s$ is the times we divide by
-  2 and $t$ is the odd result.
-\end{itemize}
+When checking for primes we only check odd numbers that are greater
+than 2.
 
-\subsubsection*{Testing}
-Given $m$, $s$ and $t$, we start by calculating
+\subsubsection*{Principle}
+Given an odd number $m$, we start by calculating
 \[ m - 1 =2^s t \]
+
+Where $s$ and $t$ are found by subtracting 1 from $m$ and dividing it
+by two until result is odd. $s$ is the times we divide by 2 and $t$ is
+the odd result.
 
 Now pick a random integer $b$ in the interval $0<b<m$.
 
-\textbf{Case 1}
+\text{With Fermat's Little Theorem} \notag\\
+\[ 1 = b^{m-1} \mod m \]
+We insert for $m-1$
+\[ 0 = b^{2^{s}t}-1\mod m \]
+We now expand $b^{2^{s}t} - 1$ by factoring the difference between two squares
+\[ 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-1}t} - 1) \mod m \]
+We now expand $b^{2^{s-1}t}-1$
+\[ 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-2}t} + 1)(b^{2^{s-2}t} - 1) \mod m \]
+We keep expanding until $s$ becomes zero
+\[ 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-2}t} + 1) \ldots (b^{t} + 1)(b^{t} - 1) \mod m \]
 
-If $b^t \equiv 1 \mod m$ holds, we know that $m$ is prime and we are finished.
-
-\textbf{Case 2}
-
-We calculate
-\[ b^{2^{s}t} \mod m \]
-
-If $m$ is a prime:
-\begin{align}\label{eq:miller-fac}
-  &\text{With Fermat's Little Theorem} \notag\\
-  &\qquad 1 = b^{m-1} \mod m \notag\\
-  &\text{We inset } b^{2^st} \notag\\
-  &\qquad 0 = b^{2^st}-1\mod m \notag\\
-  &\text{We now expand } b^{2^{s}t} - 1 \text{ by factoring the difference between two squares} \notag\\
-  &\qquad 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-1}t} - 1) \mod m \notag\\
-  &\text{We now expand } b^{2^{s-1}t}-1 \notag\\
-  &\qquad 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-2}t} + 1)(b^{2^{s-2}t} - 1) \mod m \notag\\
-  &\text{We keep expanding until $s=0$ then we get $b^{2t} - 1$, and there after} \notag\\
-  &\qquad 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-2}t} + 1) \ldots (b^{t} + 1)(b^{t} - 1) \mod m
-\end{align}
-
-Theorem $2.4.3$ states, if $ab \equiv 0 \mod p$ then $a \equiv 0
-\mod p$ or $b \equiv 0 \mod p$. So to check if $m$ is prime, the
-right-hand side of the result above (\ref{eq:miller-fac}) should
-result in zero.
+It is known that if $ab \equiv 0 \mod p$ then $a \equiv 0
+\mod p$ or $b \equiv 0 \mod p$. Therefore, either
+\[ b^{2^{i}t} \equiv -1 \mod p \quad \text{for } i = 0, \ldots, s-1 \]
+must hold, or
+\[ b^t \equiv 1 \mod p \]
+for $m$ to be a \emph{probable} prime.
 
 E.g. if we pretend that $b^{2^{s-1}t} \equiv -1 \mod m$
 \begin{align*}
@@ -99,19 +89,22 @@ E.g. if we pretend that $b^{2^{s-1}t} \equiv -1 \mod m$
   0 &= 0 \cdot (b^{2^{s-2}t}+1)...(b^{2t}+1)(b^{2t} - 1) \mod m \\
   0 &= 0 \mod m \\
 \end{align*}
-\begin{align*}
-  &\text{Case 1}\\
-  &\qquad b^t \equiv 1 \mod m\\
-  &\text{Case 2}\\
-  &\qquad b^{2^{j}t} \equiv -1 \mod m \text{ for at least one $j=0,\ldots,s-1$}
-\end{align*}
+
+\subsubsection*{Algorithm}
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=11cm]{images/7-miller-rabin}
+    \caption{The Miller-Rabin primality test}
+  \end{centering}
+\end{figure}
 
 \subsubsection*{Correctness}
-Even the condition above holds for $m$, we cannot be completely sure
-if $m$ really is a prime. If Miller-Rabin says that $m$ is
-composite, it is. But, it can be shown that Miller-Rabin has at most
-$1/4$ probability of falsely assigning a composite as a prime. This
-can be countered by doing Miller-Rabin several times with different
-random value $b$. This lowers the chance of the algorithm begin
-wrong by $\frac{1}{4}^l$ where $l$ is the number of different values
-for $b$ tested.
+Even if the algorithm yields ``prime'' for $m$, we cannot be
+completely sure if $m$ really is prime. On the other hand, if it
+yields ``composite'', we know that it is \emph{not} a prime.
+
+It can be shown that Miller-Rabin has at most $1/4$ probability of
+yielding a false-positive. This can be countered by doing several
+iterations with different random values for $b$. This lowers the
+chance of the algorithm being wrong by $\frac{1}{4}^l$, where $l$ is
+the number of different values for $b$ tested.
