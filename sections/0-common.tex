@@ -103,9 +103,16 @@ get Fermat's Little Theorem:
 Let $p$ be a prime and let $a,b \in \mathbb{Z}$ Then it holds that
 \[ ab \equiv 0 \mod p \Rightarrow a \equiv 0 \mod p \; \lor \; b
 \equiv 0 \mod p\]
+
 \subsubsection*{Proof}
-Assume $ab\equiv 0 \mod p$. If $a \equiv 0 \mod p$ we are done. So we
-need to show if $a \not \equiv 0 \mod p$ then $b \equiv 0 \mod p$. But
-since $a \not \equiv 0$ $a \in \mathbb{Z}_p^*$ and it has a
-multiplicative inverse modulo $p$ $ac \equiv 1 \mod p$. Thus we can
-see $b = 1b = (ca)b=c(ab)=c0=0$.
+Assume $ab \equiv 0 \mod p$.
+
+If $a \equiv 0 \mod p$ we are done. So we need to show if $a \not
+\equiv 0 \mod p$ then $b \equiv 0 \mod p$.
+
+Since $a \not \equiv 0$ for $a \in \mathbb{Z}_p^*$, it has a
+multiplicative inverse modulo $p$
+\[ ac \equiv 1 \mod p \]
+
+Thus we can see
+\[ b = 1 \cdot b = (ca)b=c(ab) = c \cdot 0 = 0 \]

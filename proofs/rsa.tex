@@ -21,32 +21,32 @@ We need to prove that $(m^e)^d \equiv m \mod$ since that is enc and dec using RS
 \Rightarrow\quad m^{ed} &\equiv m \mod n
 \end{align*}
 
-Chinese remainder says that it is enough to show
-\[ m^{ed} \equiv m \mod p \textbf{ and } m^{ed} \equiv m \mod q \]
+Chinese Remainder Theorem says that it is enough to show
+\[ m^{ed} \equiv m \mod p \quad \textbf{and} \quad m^{ed} \equiv m \mod q \]
 
 Showing for $p$. There are two cases: 1) $m \equiv 0 \mod p$ and 2) $m \not\equiv 0 \mod p$.
 
 \textbf{Case 1}
 \begin{align*}
-m &\equiv 0 \mod p\\
-\Rightarrow\quad m^x &\equiv m \mod p \quad \text{where } x \in \mathbb{Z}
+  m &\equiv 0 \mod p\\
+  \Rightarrow\quad m^x &\equiv m \mod p \quad \text{for } x \in \mathbb{Z}
 \end{align*}
-and since $ed \in \mathbb{Z}$ case 1 holds.
+Since $ed \in \mathbb{Z}$, case 1 holds.
 
 \textbf{Case 2}
 \begin{align*}
-m^{ed} &\equiv m \mod p\\
-m^{1 + k(p-1)(q-1)} &\equiv m \mod p\\
-m \cdot m^{k(p-1)(q-1)} &\equiv m \mod p\\
-m \cdot (m^{(p-1)})^{k(q-1)} &\equiv m \mod p
+m &\equiv m^{ed} \mod p \\
+  &\equiv m^{1 + k(p-1)(q-1)} \mod p \\
+  &\equiv m \cdot m^{k(p-1)(q-1)} \mod p \\
+  &\equiv m \cdot (m^{(p-1)})^{k(q-1)} \mod p
 \end{align*}
 
-From \textbf{Fermats little theorem} (\ref{sec:fermats-little}) we
-know that $x^{p-1} \equiv x \mod p$ for prime $p$. Thus
+From Fermat's little theorem (\ref{sec:fermats-little}) we know that
+$x^{p-1} \equiv x \mod p$ for prime $p$. Thus
 \begin{align*}
-m \cdot 1^{k(q-1)} &\equiv m \mod p\\
-m \cdot 1 &\equiv m \mod p\\
-m &\equiv m \mod p
+m &\equiv m \cdot 1^{k(q-1)} \mod p \\
+  &\equiv m \cdot 1 \mod p \\
+  &\equiv m \mod p
 \end{align*}
 
 Therefore, case 2 also holds and we have proved for prime $p$.
