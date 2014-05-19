@@ -1,13 +1,12 @@
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../index"
-%%% End: 
+%%% End:
 
 Decryption of El-Gamal works since the following can be said:
 \begin{align*}
-  y &= y_2(y_1^a)^{-1}\\
-  y_2(y_1^a)^{-1} &= m\beta^k(\alpha^{ak})^{1} \mod p\\
-  &= m\alpha^{ak}(\alpha^{ak})^{-1} \mod p\\
+  y &= y_2(y_1^a)^{-1} \mod p \\
+  &= m\beta^k(\alpha^{ak})^{-1} \mod p \\
+  &= m\alpha^{ak}(\alpha^{ak})^{-1} \mod p \\
   &= m \mod p
 \end{align*}
