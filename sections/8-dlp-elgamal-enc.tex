@@ -12,9 +12,9 @@
 \item DLP
 \item El-Gamal
   \begin{itemize}
-  \item [--]Setup of El-Gamal
-  \item [--]Proof
-  \item [--]Properties of El-Gamal
+  \item Setup
+  \item Proof
+  \item Properties
   \end{itemize}
 \end{enumerate}
 
@@ -23,10 +23,11 @@
 \input{proofs/dlp.tex}
 
 \subsection{El-Gamal}
+\subsubsection*{Setup}
 \textbf{Public key:} $(p,\alpha,\beta)$ chosen such that DLP(p) is
 difficult, and where:
 \begin{itemize}
-\item p is an odd prime.
+\item $p$ is an odd prime.
 \item $\alpha$,$\beta \in \mathbb{Z}_{p'}^*$
 \item $\beta = \alpha^a \mod p$
 \item $a \in \mathbb{Z}_{p-1} $
@@ -34,22 +35,23 @@ difficult, and where:
 
 \textbf{Private key:} $a$
 
-\textbf{Encryption:} for message $m \in \mathbb{Z}_p$ encryption is as
-follows:
+\textbf{Encryption:} for message $m \in \mathbb{Z}_p$, encryption is
+as follows:
 \begin{enumerate}
-\item choose a random $k \in \mathbb{Z_p}$. K must be secret.
-\item $ENC(m,k) = (y_1,y_2)$, where:
+\item Choose a random $k \in \mathbb{Z}_{p-1}$ ($k$ must be kept secret).
+\item $Enc(m) = (y_1,y_2)$, where:
+  \begin{align*}
+    y_1 &= \alpha^k \mod p\\
+    y_2 &= m\beta^k \mod p
+  \end{align*}
 \end{enumerate}
-\begin{align*}
-  y_1 &= \alpha^k \mod p\\
-  y_2 &= m\beta^k \mod p
-\end{align*}
 
-\textbf{Decryption:} for $y = (y_1,y_2) \in \mathbb{Z}_p \times \mathbb{Z}_p$. Decryption is as follows:
-\[DEC(y) = y_2(y_1^a)^{-1} \mod p\]
+\textbf{Decryption:} for $y = (y_1,y_2) \in \mathbb{Z}_p \times
+\mathbb{Z}_p$, decryption is as follows:
+\[ Dec(y_1,y_2) = y_2(y_1^a)^{-1} \mod p \]
 
 \subsubsection*{Proof}
 \input{proofs/elgamal.tex}
-\subsubsection*{Properties of El-Gamal}
-$a$ is hard to calculate due to DLP.
 
+\subsubsection*{Properties}
+$a$ is hard to calculate due to DLP.
