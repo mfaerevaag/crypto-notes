@@ -1,0 +1,47 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+
+\subsubsection*{Setup}
+\textbf{Public key:} $(p,\alpha,\beta)$ chosen such that DLP(p) is
+difficult, and where:
+\begin{itemize}
+\item $p$ is an odd prime
+\item $\alpha$,$\beta \in \mathbb{Z}_{p'}^*$
+\item $\beta = \alpha^a \mod p$
+\item $a \in \mathbb{Z}_{p-1} $
+\end{itemize}
+
+\textbf{Private key:} $a \in \mathbb{Z}_{p-1}$
+
+\textbf{Signature:} for message $m \in \mathbb{Z}_{p-1}$
+\begin{itemize}
+\item Compute $x = H(m)$, where $H$ is a secure hashing function.
+\item Choose a random $k \in \mathbb{Z}_{p-1}^*$.
+\item $Sig(x) = (\gamma,\delta)$, where:
+  \begin{align*}
+    \gamma &= \alpha^k \mod p \\
+    \delta &= (x-a\gamma)k^{-1} \mod p-1
+  \end{align*}
+\end{itemize}
+
+\textbf{Verification:} for message $m \in \mathbb{Z}_{p-1}$ and
+signature $(\gamma,\delta) \in \mathbb{Z}_p\times \mathbb{Z}_{p-1}$
+\begin{itemize}
+\item Compute $x = H(m)$, where $H$ is a secure hashing function.
+\item $Ver(m, (\gamma,\delta))$ holds if:
+  \[ \beta^{\gamma} \gamma^{\delta}= \alpha^x \mod p\]
+\end{itemize}
+
+\subsubsection*{Properties of k}
+$k$ is a random chosen integer, where it's given that $k \in
+\mathbb{Z}_{p-1}$. It must also be true that $k$ has a multiplicative
+inverse $kx \equiv 1 \mod p - 1$. For this, we must check if the
+$gcd(p-1,k) = 1$. If this is the case, we can use Euclid's extended
+algorithm (\ref{sec:euclids-extended}) to find a multiplicative
+inverse of $k$, which will give us:
+\[s \cdot (p-1) + t \cdot k = 1\]
+where $t$ will be the multiplicative inverse of $k$.
+
