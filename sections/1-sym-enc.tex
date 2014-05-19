@@ -50,7 +50,7 @@
 \end{description}
 
 \subsection{Public-key encryption}
-% TODO: Alice Bob
+% TODO: Alice Bo
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=15cm]{images/1-pub-enc}
@@ -59,16 +59,7 @@
   \label{fig:pub-enc}
 \end{figure}
 \subsection{RSA}
-\begin{itemize}
-\item Public key = (n,e)
-\item Private key = (p,q,d) where $ed \equiv 1 \mod \phi (n)$.
-\item Encryption is done by $Enc(m)= m^e \mod n$.
-\item Decryption is done by $Dec(c)=c^d \mod n$.
-\item n = 2 primes p and q (pq=n)(big primes makes encryption safer)
-\item e = is an integer $\in \mathbb{Z}^*_{\phi (n)}$, where $\phi (n)=(p-1)(q-1)$
-\item $d = e^{-1} \mod\phi (n)\Rightarrow ed=1\mod\phi (n)$
-\end{itemize}
-
+\input{systems/rsa-encryp.tex}
 \subsubsection*{Weakness}
 \begin{itemize}
 \item Attacker can get factors of $n$
@@ -98,20 +89,5 @@
     &(c_1^d) (c_2^d) \mod n = m_1m_2 \mod n
   \end{align*}
 \end{itemize}
-
-\subsubsection*{Example}
-Alice and Bob each have their individual private- and public-keys. If
-Alice wants to send an encrypted message to Bob she needs his
-public-key which she gets automatically.
-
-Alice now encrypts her message, $Enc(m)=m^e_{Bob} \mod n_{Bob}$, and
-sends it to Bob.
-
-Bob now has the ciphertext $c$ which needs to be decrypted. Since the
-message was encrypted with his public-key, his private-key can decrypt
-it by $Dec(c_{Alice}) = c^{d_{Bob}}_{Alice} \mod n_{Bob}$.
-
-Bob now has Alice’s message $m$.
-
 \subsubsection*{Proof}
 \input{proofs/rsa.tex}

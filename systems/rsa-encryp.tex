@@ -1,0 +1,26 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+\subsection*{Setup}
+\textbf{Public key:} $(n, e)$ where $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
+
+\textbf{Private key:} $(p, q, d)$ where $d \in \mathbb{Z}_{\phi(n)}^*$, such that
+\[ ed \equiv 1 \mod \phi(n) \]
+
+We use $\phi(n)$ because it is hard to compute given only a large $n$, but easy with known $p, q$ since $\phi(n) = (p-1)(q-1)$, thus $d$ cannot be easily computed given just $n$ (must prime factor $n$).
+
+\textbf{Encryption:} $m$ is the message. Encryption is
+\[ Enc(m) = m^e \mod n \]
+
+\textbf{Decryption:} $c$ is the ciphertext. Decryption is as follows:
+\[ Dec(c) \equiv c^d \mod n \]
+\[ Dec(c) \equiv m^{ed} \mod n \]
+
+\textbf{Properties of RSA:}
+
+$e$ must be chosen such that it holds that $gcd(\phi(n),e) = 1$, where
+$\phi(n) = (p - 1)(q - 1)$
+
+$n$ must be the product of two large primes $p$ and $q$.

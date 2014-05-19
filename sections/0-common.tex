@@ -45,7 +45,9 @@ End because 2 divides 10, thus $\gcd(90, 34) = 2$
   \end{tabular}
   \caption{Example run of Euclid's Extended Algorithm}
 \end{table}
-
+The output of Euclid's extended algorithm can be written as:
+\[ 1 = r \cdot s + t \cdot p\]
+Where t will be the multiplicative inverse of $p^{-1} \mod s$. 
 \subsection{Chinese Remainder Theorem}
 \label{sec:crm}
 If $x^ay^b \equiv z \mod p$, then $(x^a \mod p)(y^b \mod p) \equiv z \mod p$
@@ -63,7 +65,8 @@ $a$ must be ``coprime'' to $m$ ($\gcd(a, m) = 1$).
 \textbf{Ex} $3^{-1} \mod m = 4$, because $3 \cdot 4 = 12 \equiv 1 \mod 4$
 
 Can be found using Euclid's Extended Algorithm~(\ref{sec:euclids-extended}).
-
+\[ 1 = r \cdot s + t \cdot p\]
+where t is the multiplicative inverse.
 \subsection{Euler's $\phi$-function}
 \label{sec:eulers-phi}
 Defines the number of $a \in \mathbb{Z}_p$ for which $\gcd(a, p) = 1$,
@@ -82,7 +85,7 @@ we can multiply some element $b \in \mathbb{Z}_p^*$ onto all elements,
 and get the set
 \[ \{b,2b,\ldots,b(p-1)\} \mod p \]
 since we know that none of the elements is congruent to zero modulo
-$p$ from the theorem $ab \equiv 0 \mod p$ if $a \lor b \equiv 0 \mod
+$p$ from Theorem 2.4.3 we know $ab \equiv 0 \mod p$ if $a \lor b \equiv 0 \mod
 p$.
 
 From that it is also known that both sets are equal. Since
