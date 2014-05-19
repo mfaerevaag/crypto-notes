@@ -1,0 +1,51 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+
+\textbf{Public:} $n = pq$ for primes $p, q$ and encryption exponent $e
+\in \mathbb{Z}_{\phi(n)}^*$
+
+\textbf{Private:} $(p, q, d)$ where $d \in \mathbb{Z}_{\phi(n)}^*$, such that
+\[ ed \equiv 1 \mod \phi(n) \]
+
+Define $\phi(n) = (p-1)(q-1)$. We have that
+\begin{align*}
+  & ed \equiv 1 \mod \phi(n)\\
+  \Rightarrow\quad& ed = 1 + k(p - 1)(q - 1) \quad \text{where } k \in \mathbb{Z}
+\end{align*}
+
+We need to prove that $(s^e)^d \equiv s \mod n$ since that is sign and verf using RSA.
+\begin{align*}
+(s^e)^d &\equiv s \mod n \\
+\Rightarrow\quad s^{ed} &\equiv s \mod n
+\end{align*}
+
+Chinese Remainder Theorem says that it is enough to show
+\[ s^{ed} \equiv s \mod p \quad \textbf{and} \quad s^{ed} \equiv s \mod q \]
+
+Showing for $p$. There are two cases: 1) $s \equiv 0 \mod p$ and 2) $s \not\equiv 0 \mod p$.
+
+\textbf{Case 1}
+\begin{align*}
+  s &\equiv 0 \mod p\\
+  \Rightarrow\quad s^x &\equiv s \mod p \quad \text{for } x \in \mathbb{Z}
+\end{align*}
+Since $ed \in \mathbb{Z}$, case 1 holds.
+
+\textbf{Case 2}
+\begin{align*}
+s &\equiv s^{ed} \mod p \\
+  &\equiv s^{1 + k(p-1)(q-1)} \mod p \\
+  &\equiv s \cdot s^{k(p-1)(q-1)} \mod p \\
+  &\equiv s \cdot (s^{(p-1)})^{k(q-1)} \mod p
+\end{align*}
+
+From Fermat's little theorem (\ref{sec:fermats-little}) we know that
+$x^{p-1} \equiv x \mod p$ for prime $p$. Thus
+\begin{align*}
+s &\equiv s \cdot 1^{k(q-1)} \mod p \\
+  &\equiv s \cdot 1 \mod p \\
+  &\equiv s \mod p
+\end{align*}
