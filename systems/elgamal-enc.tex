@@ -1,0 +1,31 @@
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End: 
+\subsubsection*{Setup}
+\textbf{Public key:} $(p,\alpha,\beta)$ chosen such that DLP(p) is
+difficult, and where:
+\begin{itemize}
+\item $p$ is an odd prime.
+\item $\alpha$,$\beta \in \mathbb{Z}_{p'}^*$
+\item $\beta = \alpha^a \mod p$
+\item $a \in \mathbb{Z}_{p-1} $
+\end{itemize}
+
+\textbf{Private key:} $a$
+
+\textbf{Encryption:} for message $m \in \mathbb{Z}_p$, encryption is
+as follows:
+\begin{enumerate}
+\item Choose a random $k \in \mathbb{Z}_{p-1}$ ($k$ must be kept secret).
+\item $Enc(m) = (y_1,y_2)$, where:
+  \begin{align*}
+    y_1 &= \alpha^k \mod p\\
+    y_2 &= m\beta^k \mod p
+  \end{align*}
+\end{enumerate}
+
+\textbf{Decryption:} for $y = (y_1,y_2) \in \mathbb{Z}_p \times
+\mathbb{Z}_p$, decryption is as follows:
+\[ Dec(y_1,y_2) = y_2(y_1^a)^{-1} \mod p \]
