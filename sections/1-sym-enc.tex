@@ -51,7 +51,13 @@
 
 \subsection{Public-key encryption}
 % TODO: Alice Bob
-
+\begin{figure}[H]
+  \begin{centering}
+    \includegraphics[width=15cm]{images/1-pub-enc}
+    \caption{Basic model for public encryption}
+  \end{centering}
+  \label{fig:pub-enc}
+\end{figure}
 \subsection{RSA}
 \begin{itemize}
 \item Public key = (n,e)
@@ -60,7 +66,7 @@
 \item Decryption is done by $Dec(c)=c^d \mod n$.
 \item n = 2 primes p and q (pq=n)(big primes makes encryption safer)
 \item e = is an integer $\in \mathbb{Z}^*_{\phi (n)}$, where $\phi (n)=(p-1)(q-1)$
-\item d = is the multiplicative inverse of $e\; mod\;\phi (n)$
+\item $d = e^{-1} \mod\phi (n)\Rightarrow ed=1\mod\phi (n)$
 \end{itemize}
 
 \subsubsection*{Weakness}
