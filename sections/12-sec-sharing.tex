@@ -12,7 +12,7 @@
 \begin{enumerate}
 \item Purpose
 \item Shamir's threshold scheme
-\item Key re-construction
+\item Further discussion
 \end{enumerate}
 
 \subsection{Purpose}
@@ -28,16 +28,14 @@ it doesn't matter if a friend or two loses their share. This is
 \item $(t, w)$, where $t$ is the threshold and $w$ is the number of shareholders
 \item Participants: Keyholder $H$, shareholders $S_1, \ldots, S_w$
 \item Secret key: $k$
-\item H chooses:
+\item $H$ chooses:
   \begin{itemize}
   \item a prime $p$, such that $p \ge w + 1$
-  \item a random polynomial
-    \[
-    f(x) = k + \sum\limits_{j=1}^{t-1} c_jx^j \mod p
-    \]
+  \item a random polynomial over a final field of size $p$
+    \[ f(x) = k + \sum\limits_{j=1}^{t-1} c_jx^j \mod p \]
     of degree $t-1$, where $c_j$s are chosen at random
   \end{itemize}
-\item $H$ computes $(x_i, f(x_i))$ for $i  = 1, \ldots, t$
+\item $H$ computes $(x_i, f(x_i))$ for $i  = 1, \ldots, w$
 \end{itemize}
 
 \subsubsection*{Re-construction}
@@ -45,16 +43,24 @@ it doesn't matter if a friend or two loses their share. This is
   \begin{equation}\label{eq:lagrange}
     f(x) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x-x_j}{x_i-x_j}
   \end{equation}
-  \label{asdf}
   \caption{Lagrange Interpolation Formula}
 \end{figure}
 
 \begin{itemize}
 \item Input: $t$ shares $(x_i, y_i)$ for $i = 1, \ldots, t$
 \item $H$ re-constructs the secret key $k$ by using Lagrange Interpolation Formula (\ref{eq:lagrange})
-  \[ k = f(0) = \sum\limits_{i=1}^t y_1 \prod\limits_{j=1, j\not=i}^t \frac{x_j}{x_j-x_i} \]
+  \[ k = f(0) = \sum\limits_{i=1}^t y_i \prod\limits_{j=1, j\not=i}^t \frac{x_j}{x_j-x_i} \]
 \end{itemize}
 
+In this scheme, any $t$ out of $w$ shares may be used to recover the
+secret. The system relies on the idea that you can fit a unique
+polynomial of degree $t-1$ to any set of $t$ points that lie on the
+polynomial. It takes two points to define a straight line, three
+points to define a parabola, four points to define a cubic
+curve, and so on. That is it takes $t$ points to define a polynomial
+of degree $t-1$.
+
+\subsection{Further discussion}
 \textbf{$t$ shareholders} \\
 There is only one polynomial $f(x)$ over $\mathbb{Z}_p$ of degree at
 most $t-1$, such that $f(x_i) = y_i$ for $i = 1,\ \dots,\
