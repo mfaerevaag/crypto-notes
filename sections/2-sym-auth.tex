@@ -10,15 +10,15 @@
 \subsection*{Agenda}
 \begin{enumerate}
 \item Purpose of authentication
-\item What is symmetric key auth?
-\item What is public key auth?
-\item RSA authentication
+\item Symmetric-key authentication
+\item Public-key authentication
+\item RSA
 \end{enumerate}
 
-\subsection{Purpose of authentication}
+\subsection{Purpose}
 Retain data integrity. Bob can validate that a message is the original one sent from Alice, i.e. that Eve has not forged it. \emph{Not} about keeping data secret.
 
-\subsection{What is symmetric key auth?}
+\subsection{Symmetric-key authentication}
 Known as \texttt{MAC}, Message Authentication Code.
 
 \begin{center}
@@ -29,7 +29,7 @@ Known as \texttt{MAC}, Message Authentication Code.
 
 \textbf{Advantages:} simple to use, fast computations
 
-\subsection{What is public key auth?}
+\subsection{Public-key authentication}
 Signs with \emph{private} key, verifies with \emph{public} key (reverse of pub-key encryption/decryptions).
 
 \begin{center}
@@ -40,8 +40,8 @@ Signs with \emph{private} key, verifies with \emph{public} key (reverse of pub-k
 
 \textbf{Disadvantages:} existential forgery is trivial, Eve can choose any $s$ and compute corresponding $e_{pub}(s) = m$. Hash functions can solve this.
 
-\subsection{RSA authentication}
+\subsection{RSA}
 \input{systems/rsa-sig.tex}
 
-\subsection{Proof of RSA}
+\subsubsection*{Proof}
 \input{proofs/rsa.tex}
