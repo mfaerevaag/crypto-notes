@@ -1,14 +1,7 @@
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../index"
-%%% End: 
-
-
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "../index"
-%%% End: 
+%%% End:
 
 We can ensure that El-Gamal will sign on $\alpha(x)$ due to the
 following:
@@ -18,8 +11,10 @@ As $\beta$ is defined as $\beta = \alpha^{a}$ and from the signature, it's given
   \gamma &= \alpha^k \mod p \\
   \delta &= (x - a \gamma)k^{-1} \mod p - 1 \\
 \end{align*}
+
 And from the verification it's given:
 \[ \beta^{\gamma}\gamma^{\delta} \equiv \alpha^x \mod p\]
+
 \begin{align*}
   \alpha^x &\equiv \beta^{\gamma}\gamma^{\delta} \mod p\\
   &\equiv \alpha^{a^{\gamma}} \gamma^{(x-a\gamma)k^{-1}} \mod p\\
@@ -28,11 +23,12 @@ And from the verification it's given:
   &\equiv \alpha^{a\gamma} \alpha^{x}\alpha^{-a\gamma} \mod p\\
   &\equiv \alpha^x \mod p
 \end{align*}
-Because of Fermat's little theorem the following is possible:
-if $\alpha\in \mathbb{Z}_{p'}^*$:
+
+Because of Fermat's little theorem (\ref{sec:fermats-little}) the
+following is possible: if $\alpha\in \mathbb{Z}_{p'}^*$:
 \begin{align*}
   \alpha^{p-1} &\equiv 1 \mod p\\
   \alpha^p &\equiv \alpha \mod p\\
-  \texttt{then}\\
+  \text{then}&\\
   \alpha^x \mod p &\equiv \alpha^{x \mod p-1} \mod p
 \end{align*}
