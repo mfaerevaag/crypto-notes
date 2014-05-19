@@ -1,4 +1,3 @@
-
 %%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../index"
@@ -15,12 +14,17 @@ Given a prime $p$ and $\alpha, \beta \in \mathbb{Z}_p^*$ find $a \in \mathbb{Z}_
 \item $p$ must be a large prime\\
   Since $a \in \mathbb{Z}_p$ one can just try all possible $a$s
 
-\item $p - 1$ must have at least one large prime factor (makes it difficult to prime factor)\\
-  Prevent solving the discrete logarithm by SOMETHING ODD
+\item $p - 1$ must have at least one large prime factor to make it
+  difficult to prime factor
 
-\item Smallest $m$ for which $\alpha^m \equiv 1 \mod p$ must be large (see)\\
-  If $\alpha^m \equiv 1 \mod p$ then $\alpha^m \equiv \alpha^{a \mod m} \mod p$ so there are only $m$ values to check.
+\item Smallest $m$ for which $\alpha^m \equiv 1 \mod p$ must be large,
+  e.i. $\alpha$ should have a high order modulus $p$. \\
+  If $\alpha^m
+  \equiv 1 \mod p$ then $\alpha^m \equiv \alpha^{a \mod m} \mod p$ so
+  there are only $m$ values to check.
 
   \textbf{Proof:} We can write $a = mq + r$ implying that $r = a \mod m$. Then
-  \[ \alpha^a \equiv \alpha^{mq + r} \equiv \alpha^r\alpha^{mq} \equiv \alpha^r(\alpha^m)^q \equiv \alpha^r\cdot 1 \equiv \alpha^r \equiv \alpha^{a \mod m} \mod p\]
+  \[ \alpha^a \equiv \alpha^{mq + r} \equiv \alpha^r\alpha^{mq} \equiv
+  \alpha^r(\alpha^m)^q \equiv \alpha^r\cdot 1 \equiv \alpha^r \equiv
+  \alpha^{a \mod m} \mod p\]
 \end{enumerate}
