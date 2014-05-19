@@ -13,7 +13,7 @@
 \subsection*{Agenda}
 \begin{enumerate}
 \item Setup
-\item Hash functions
+\item Hash-functions
 \item Proof
 \end{enumerate}
 
@@ -35,7 +35,7 @@ be easily computed given just $n$ (must prime factor $n$).
 \textbf{Verification:} $m$ is the message, signature is $s \in \mathbb{Z}_n$. Accept if
 \[ x \equiv s^e \mod n \]
 
-\subsection{Hash functions}
+\subsection{Hash-functions}
 $H$ is used to prevent the trivial forgey where Eve can choose any $s$
 such that $s = e_{pub}(m)$. She cannot do this since she would need a
 preimage for $H(m)$ as $s$ otherwise does not sign $H(m)$ but $m$.
