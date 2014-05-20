@@ -1,8 +1,7 @@
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../index"
-%%% End: 
+%%% End:
 
 \subsubsection*{Setup}
 \textbf{Public key:} $(p,\alpha,\beta)$ chosen such that DLP(p) is
@@ -36,12 +35,23 @@ signature $(\gamma,\delta) \in \mathbb{Z}_p\times \mathbb{Z}_{p-1}$
 \end{itemize}
 
 \subsubsection*{Properties of k}
-$k$ is a random chosen integer, where it's given that $k \in
-\mathbb{Z}_{p-1}$. It must also be true that $k$ has a multiplicative
-inverse $kx \equiv 1 \mod p - 1$. For this, we must check if the
-$gcd(p-1,k) = 1$. If this is the case, we can use Euclid's extended
-algorithm (\ref{sec:euclids-extended}) to find a multiplicative
-inverse of $k$, which will give us:
-\[s \cdot (p-1) + t \cdot k = 1\]
-where $t$ will be the multiplicative inverse of $k$.
+\begin{itemize}
+\item Must be kept secret
+\item Must have a multiplicative inverse $kx \equiv 1 \mod p - 1$.
+  \begin{align*}
+    \intertext{Must hold that}
+    \gcd(p-1,k) &= 1
+    \intertext{Can thereafter find multiplicative inverse Euclid's extended
+      algorithm (\ref{sec:euclids-extended})}
+    s \cdot (p-1) + t \cdot k &= 1
+    \intertext{Where $t$ is the multiplicative inverse}
+  \end{align*}
+\end{itemize}
 
+\subsubsection*{Hash-functions}
+One can use any secure hash-function, as long as both parties agree on
+using the same.
+
+By hashing the message, one prevents forgery attacks. Without, an
+active adversary could simply change the message and compute a new
+signature.
