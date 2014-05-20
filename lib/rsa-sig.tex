@@ -1,10 +1,9 @@
-
-%%% Local Variables: 
+%%% Local Variables:
 %%% mode: latex
 %%% TeX-master: "../index"
-%%% End: 
+%%% End:
 
-\subsection*{Setup}
+\subsection{Setup}
 $H$ is a publicly known hash function, must be secure.
 
 \textbf{Public key:} $(n, e)$ where $n = pq$ for primes $p, q$ and $e \in \mathbb{Z}_{\phi(n)}^*$
@@ -26,4 +25,3 @@ be easily computed given just $n$ (must prime factor $n$).
 $H$ is used to prevent the trivial forgey where Eve can choose any $s$
 such that $s = e_{pub}(m)$. She cannot do this since she would need a
 preimage for $H(m)$ as $s$ otherwise does not sign $H(m)$ but $m$.
-
