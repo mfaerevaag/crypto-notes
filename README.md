@@ -9,7 +9,7 @@ Crypto Notes
    * AES
    * DES
  * Nondeterminism (RSA vs. El-Gamal)
- * El-Gamal Signature
-   * Why mod p-1 ?
- * Symmetric-key- and public-key encryption
-   * Alice-Bob diagram for public-key encryption
+ * Iterated hash-functions
+   * Complexity of collisions
+ * RSA Encryption
+   * Prime generation
