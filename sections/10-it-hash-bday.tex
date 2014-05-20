@@ -49,17 +49,18 @@ length and returns a binary string of fixed length.
 \end{table}
 
 \subsubsection*{Finding complexity of collision attack}
-Probability of finding a collision is found with the birthday paradox. Given a function $f$ that maps
-values to $q$ different outputs, the probability of finding a
-collision after $n$ randomly selected inputs is
-\[ p(n; q) \approx 1 - e^{\frac{-n(n-1)}{2\cdot q}}\]
+Let $q$ be the number of draws from a set of $n$ elements. $1 - p$ is
+the probability that the values are distinct.
 
-This expression can be inverted to $n(p; q)$ describing how many tries
-$n$ it takes to reach a probability $p$ of collision
-\[ n(p; q) \approx \sqrt{2q \ln \frac{1}{1 - p}} \]
+$1 - p = \frac{S-1}{S}$ for $q_1 \neq q_2$
 
-To achieve $50\%$ chance of collision
-\[ n(0.5; q) = 1.1774 \sqrt{q} \]
+$1 - p = \frac{S-2}{S}$ for $q_1 \neq q_2 \mathbf{\quad and \quad} q_2 \neq q_3$
+
+This can be written $1 - p = 1 \cdot \frac{S-1}{S} \cdot \frac{S-2}{S} \cdot \cdots = \prod_{k=1}^{q-1} \left( 1 - \frac{k}{n} \right) \approx e^{\frac{-q(q-1)}{2n}}$
+
+Thus $1 - p = 0.5 \Rightarrow q = 1.1774 \sqrt{2^n}$
+
+Complexity is roughly $\sqrt{2^n}$
 
 \textbf{Example:} For a 128 bit hash there are $2^{128}$ different
 hashes, and the number of tries needed to achieve $50\%$ chance of
