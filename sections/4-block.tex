@@ -75,8 +75,6 @@ Encryption of block $m_i$ depends on cipher block $c_{i-1}$. An
 \textbf{Disadvantages:} lost or tampered transmission of one block
 results in wrong decryption of full plaintext
 
-If block size does not divide messages length, the length is padded.
-
 \subsection{CBC-MAC}
 
 Message authentication code using block ciphers (for instance
@@ -97,3 +95,6 @@ Because $m'_1 \oplus t$ will cancel the contribution of the first MAC, making $M
 \end{itemize}
 
 \subsubsection{Padding rule}
+
+If block size does not divide messages length, the length is
+padded. Can simply be padding with 0's or Merkle-Damgaard
