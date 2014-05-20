@@ -12,10 +12,10 @@
 \subsection*{Agenda}
 \begin{enumerate}
 \item Setup
-\item Modulus exponentiation
 \item Proof
 \item Prime generation
 \item Non-determinism
+\item Modular exponentiation
 \end{enumerate}
 
 \subsection{Setup}
@@ -62,3 +62,38 @@ have the same property.
 
 If RSA is combined with a padding algorithm containing randomness,
 non-determinism is achieved.
+
+\subsection{Modular exponentiation}
+
+Efficient way of computing $c \equiv b^e \mod m$. Utilize that the following
+to equations are equivalent
+\begin{align*}
+  c &\equiv ab \mod m\\
+  c &\equiv (a \cdot (b \mod m)) \mod
+\end{align*}
+
+Given $c, b, e$ the algorithm is
+\begin{enumerate}
+\item Set $c = 1$, $e' = 0$
+\item Increment $e'$
+\item Set $c = b \cdot c \mod m$
+\item If $e' < e$ go to 2, else $c$ is the correct answer
+\end{enumerate}
+
+The example b = 4, e = 13, and m = 497 is presented again. The algorithm passes through step 3 thirteen times:
+
+\begin{enumerate}
+\item $e' = 1 $, $c = (1 * 4) \mod 497 = 4 \mod 497 = 4$.
+\item $e' = 2 $, $c = (4 * 4) \mod 497 = 16 \mod 497 = 16$.
+\item $e' = 3 $, $c = (16 * 4) \mod 497 = 64 \mod 497 = 64$.
+\item $e' = 4 $, $c = (64 * 4) \mod 497 = 256 \mod 497 = 256$.
+\item $e' = 5 $, $c = (256 * 4) \mod 497 = 1024 \mod 497 = 30$.
+\item $e' = 6 $, $c = (30 * 4) \mod 497 = 120 \mod 497 = 120$.
+\item $e' = 7 $, $c = (120 * 4) \mod 497 = 480 \mod 497 = 480$.
+\item $e' = 8 $, $c = (480 * 4) \mod 497 = 1920 \mod 497 = 429$.
+\item $e' = 9 $, $c = (429 * 4) \mod 497 = 1716 \mod 497 = 225$.
+\item $e' = 10$, $ c = (225 * 4) \mod 497 = 900 \mod 497 = 403$.
+\item $e' = 11$, $ c = (403 * 4) \mod 497 = 1612 \mod 497 = 121$.
+\item $e' = 12$, $ c = (121 * 4) \mod 497 = 484 \mod 497 = 484$.
+\item $e' = 13$, $ c = (484 * 4) \mod 497 = 1936 \mod 497 = 445$.
+\end{enumerate}
