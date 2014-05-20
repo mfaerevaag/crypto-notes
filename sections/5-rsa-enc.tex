@@ -15,6 +15,7 @@
 \item Modulus exponentiation
 \item Proof
 \item Prime generation
+\item Non-determinism
 \end{enumerate}
 
 \subsection{Setup}
@@ -49,3 +50,15 @@ $n$ must be the product of two large primes $p$ and $q$.
 \item[Miller-Rabin] Probabilistic method of checking whether a number
   $n$ is prime. Can be iterated to increase probability of correctness.
 \end{description}
+
+\subsection{Non-determinism}
+As mentioned, if $c_1$ and $c_2$ are encrypted with the same key then:
+\begin{equation}
+  (c_1c_2)^d \equiv (c_1^d) (c_2^d) \equiv m_1m_2 \mod n
+\end{equation}
+This is an unfortunate result of RSA being deterministic. El-Gamal
+uses a random exponent in the encryption process and therefor does not
+have the same property.
+
+If RSA is combined with a padding algorithm containing randomness,
+non-determinism is achieved.

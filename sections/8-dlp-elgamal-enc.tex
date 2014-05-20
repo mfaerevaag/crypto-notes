@@ -24,8 +24,14 @@
 \subsection{El-Gamal}
 \input{lib/elgamal-enc.tex}
 
-\subsubsection*{Proof}
+\subsubsection{Proof}
 \input{lib/elgamal-enc-proof.tex}
 
-\subsubsection*{Properties}
+\subsubsection{Properties}
+
 $a$ is hard to calculate due to DLP.
+
+\subsubsection*{Non-determinism}
+As El-Gamal uses a random exponent in the encryption exponent, one
+achieves non-determinism as two cipher-texts encrypted with the same
+key, \emph{probably} not equal.

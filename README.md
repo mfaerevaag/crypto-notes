@@ -8,6 +8,5 @@ Crypto Notes
    * MACs
    * AES
    * DES
- * Nondeterminism (RSA vs. El-Gamal)
  * Iterated hash-functions
    * Complexity of collisions
