@@ -17,7 +17,6 @@
 \end{enumerate}
 
 \subsection{Polyalphabetic substitution cipher}
-
 Polyalphabetic substitution cipher is an extension of mono alphabetic
 substitution ciphers, where one character is encryptet at a time. Most
 common is Caesar system.
@@ -27,7 +26,6 @@ multiple alphabets for security. Thus the same plaintext character can
 encrypt to different ciphertext characters.
 
 \subsection{Vigenere crypto system}
-
 Assume $\mathcal{P} = \mathcal{C} = \mathcal{K} =
 \mathbb{Z}_{26}^j$. Encryption and decryption will be:
 \begin{align*}
@@ -43,8 +41,8 @@ encryption.
 
 The values of the secret key is $26^j$. Cryptanalysis is still easy,
 if the value of $j$ isn't too large.
-\subsection{Cryptanalysis}
 
+\subsection{Cryptanalysis}
 \begin{enumerate}
 \item Find probable key period $l$ using IoC
 \item Divide $m$ into $l$ blocks, find probable shift in each using
@@ -74,7 +72,6 @@ vector. The $l$ that produces $I_c$ values that are closest to natural
 english is likely to be the actual key period.
 
 \subsubsection{Letter distributions}
-
 Given vectors $x_i \ldots x_{l-1}$ we now compute the likely shift
 length of each. That is, for each $x_i$ we do the following.
 

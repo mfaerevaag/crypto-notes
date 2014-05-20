@@ -36,10 +36,13 @@ probability of it being a prime is. If we exempt all even number, we
 increase the probability of guessing the prime with a factor of two.
 
 \subsection{Trial division}
-Trial division is quite simple and another way to generate a k-bit prime.
+Trial division is quite simple and another way to generate a $k$-bit
+prime.
 \begin{itemize}
 \item input an integer $m$
-\item We devide $m$ with all primes $r\le \sqrt{m}$ (This is true sice if a factor is larger than $\sqrt{m}$ then it has atleast another factor that is smaller than $\sqrt{m}$)
+\item We devide $m$ with all primes $r\le \sqrt{m}$ (This is true since
+  if a factor is larger than $\sqrt{m}$ then it has atleast another
+  factor that is smaller than $\sqrt{m}$)
 \item if $r$ devides $m$ then $m$ isn't prime
 \item if all primes $r$ are coprime with $m$ then it is prime
 \end{itemize}
