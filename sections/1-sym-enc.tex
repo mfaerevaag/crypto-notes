@@ -50,7 +50,6 @@
 \end{description}
 
 \subsection{Public-key encryption}
-% TODO: Alice Bo
 \begin{figure}[H]
   \begin{centering}
     \includegraphics[width=15cm]{images/1-pub-enc}
@@ -58,8 +57,10 @@
   \end{centering}
   \label{fig:pub-enc}
 \end{figure}
+
 \subsection{RSA}
-\input{systems/rsa-encryp.tex}
+\input{lib/rsa-enc.tex}
+
 \subsubsection*{Weakness}
 \begin{itemize}
 \item Attacker can get factors of $n$
@@ -89,5 +90,6 @@
     &(c_1^d) (c_2^d) \mod n = m_1m_2 \mod n
   \end{align*}
 \end{itemize}
+
 \subsubsection*{Proof}
-\input{proofs/rsa.tex}
+\input{lib/rsa-enc-proof.tex}
