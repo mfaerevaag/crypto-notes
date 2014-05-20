@@ -9,7 +9,7 @@
 % Remember formulas
 % Index of coincidence
 
-\subsection*{Agenda}
+\subsection{Agenda}
 \begin{enumerate}
 \item Polyalphabetic substitution cipher
 \item Vigenere
@@ -67,23 +67,39 @@ For a random text the value $I_c$ is
 
 And for a natural language english $I_c = 0.065$
 
-Split the text into $l$ blocks and compute $I_c$ for each resulting
-vector. The $l$ that produces $I_c$ values that are closest to natural
-english is likely to be the actual key period.
+\begin{verbatim}
+for l = 1 .. p (where p is supposed max period)
+    split m into l blocks l_1 .. l_i
+    return list containing: for each block
+        calculate IoC(l_i)
+\end{verbatim}
+
+Split the text into $l$ blocks and compute $I_c$ for each vector in
+each block. Choose the $l$ that produces $IoC$ values closest to
+natural english.
 
 \subsubsection{Letter distributions}
-Given vectors $x_i \ldots x_{l-1}$ we now compute the likely shift
-length of each. That is, for each $x_i$ we do the following.
+Given vectors $c_1 \ldots c_l$ we now compute the likely shift length
+of each. That is, for each $x_i$ we do the following.
 
-For each shift $1 \ldots 26$ compute the letter distribution, which is
-the frequency of each letter $A \ldots Z$ in $x_i$. We then compute
-the distance to the distribution of natural English. One way is ``sum
-of squared differences''. Given $\overrightarrow{a}$ and
-$\overrightarrow{b}$ the distance is
+\begin{verbatim}
+for i = 1 .. l
+    for j = 0 .. 25
+        vec = shift block C_i j to the left
+        compute distance(vec, natural_distribution)
+\end{verbatim}
+
+We choose the shift that has the smallest distance to natural english.
+
+The distance can be computed using the ``sum of squared
+differences''. Given $\overrightarrow{a}$ and $\overrightarrow{b}$ the
+distance is
 
 \[\Sigma_{n=o}^i (a_n - b_n)^2 \]
 
-We choose the shift that has the smallest distance to natural english.
+% For each shift $1 \ldots 26$ compute the letter distribution, which is
+% the frequency of each letter $A \ldots Z$ in $x_i$. We then compute
+% the distance to the distribution of natural English.
 
 \subsubsection{Reassembly}
 It is now trivial to reconstruct the full plaintext by appending
