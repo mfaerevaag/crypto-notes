@@ -12,9 +12,9 @@
 \subsection*{Agenda}
 \begin{enumerate}
 \item Setup
-\item Prime generation
 \item Modulus exponentiation
 \item Proof
+\item Prime generation
 \end{enumerate}
 
 \subsection{Setup}
@@ -34,7 +34,7 @@ We use $\phi(n)$ because it is hard to compute given only a large $n$, but easy 
 
 \textbf{Properties of RSA:}
 
-$e$ must be chosen such that it holds that $gcd(\phi(n),e) = 1$, where
+$e$ must be chosen such that it holds that $\gcd(\phi(n),e) = 1$, where
 $\phi(n) = (p - 1)(q - 1)$
 
 $n$ must be the product of two large primes $p$ and $q$.
@@ -43,4 +43,9 @@ $n$ must be the product of two large primes $p$ and $q$.
 \input{lib/rsa-enc-proof.tex}
 
 \subsection{Prime generation}
-%TODO
+\begin{description}
+\item[Trial division] $n$ is prime iff for all primes $p < \sqrt{n}$,
+  $p$ does not divide $n$. Inefficient.
+\item[Miller-Rabin] Probabilistic method of checking whether a number
+  $n$ is prime. Can be iterated to increase probability of correctness.
+\end{description}

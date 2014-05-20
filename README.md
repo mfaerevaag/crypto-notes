@@ -11,5 +11,3 @@ Crypto Notes
  * Nondeterminism (RSA vs. El-Gamal)
  * Iterated hash-functions
    * Complexity of collisions
- * RSA Encryption
-   * Prime generation
