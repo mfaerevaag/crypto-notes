@@ -43,24 +43,31 @@ length and returns a binary string of fixed length.
 % \textbf{Private key:}
 
 \subsection{Complexity of collisions}
-\subsubsection*{Birthday paradox}
-Probability of finding a collision. Given a function $f$ that maps
-values to $H$ different outputs, the probability of finding a
+
+\begin{align*}
+&\mbox{\textbf{Attack}}\hspace{2cm}&\mbox{\textbf{Rough Complexity}}\\
+&\mbox{Collision}\hspace{2cm}&\sqrt{2^n}=2^{n/2}\\
+&\mbox{2nd preimage}\hspace{2cm}&2^n\\
+&\mbox{Preimage}\hspace{2cm}&2^n\\
+\end{align*}
+\subsubsection*{Finding complexity of collision attack}
+Probability of finding a collision is found with the birthday paradox. Given a function $f$ that maps
+values to $q$ different outputs, the probability of finding a
 collision after $n$ randomly selected inputs is
 
-\[ p(n; H) \approx 1 - e^{\frac{-n(n-1)}{2H}} \approx 1 - e^{\frac{-n^2}{2H}} \]
+\[ p(n; q) \approx 1 - e^{\frac{-n(n-1)}{2\cdot q}}\]
 
-This expression can be invertedto $n(p; H)$ describing how many tries
+This expression can be inverted to $n(p; q)$ describing how many tries
 $n$ it takes to reach a probability $p$ of collision
 
-\[ n(p; H) \approx \sqrt{2H \ln \frac{1}{1 - p}} \]
+\[ n(p; q) \approx \sqrt{2q \ln \frac{1}{1 - p}} \]
 
-To achieve $0.5$ chance of collision this gives
+To achieve $50\%$ chance of collision
 
-\[ n(0.5; H) = 1.1774 \sqrt{H} \]
+\[ n(0.5; q) = 1.1774 \sqrt{q} \]
 
 \textbf{Example:} For a 128 bit hash there are $2^{128}$ different
-hashes, and the number of tries needed to achieve $0.5$ chance of
+hashes, and the number of tries needed to achieve $50\%$ chance of
 collision is then
 
 \[ 1.1774 \sqrt{2^{128}} \approx 2.17 \cdot 10^{19} \]
