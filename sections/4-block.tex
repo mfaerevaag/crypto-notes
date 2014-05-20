@@ -19,9 +19,9 @@
 
 \subsection{Block ciphers}
 
-``Pseudo Random Permutations'', they scramble a plaintext $m$ using a
-key $k$ to produce a seemingly random text $c$. Can be reversed using
-the same key $k$.
+Symmetric key cipher. ``Pseudo Random Permutations'', they scramble a
+plaintext $m$ using a key $k$ to produce a seemingly random text
+$c$. Can be reversed using the same key $k$.
 
 \subsubsection*{Security goal of block ciphers}
 
@@ -48,6 +48,10 @@ Block size $128$ bits, key size $128, 192$ or $256$ bits
 \item AddRoundKey
 \end{enumerate}
 
+\subsubsection{MixColumn operation}
+Mixes column values using matrix multiplication
+\includegraphics[scale=0.6]{images/4-mixcol}
+
 \subsection{Modes of operation}
 
 \subsubsection*{Electronic Code Book}
@@ -70,6 +74,8 @@ Encryption of block $m_i$ depends on cipher block $c_{i-1}$. An
 
 \textbf{Disadvantages:} lost or tampered transmission of one block
 results in wrong decryption of full plaintext
+
+If block size does not divide messages length, the length is padded.
 
 \subsection{CBC-MAC}
 
