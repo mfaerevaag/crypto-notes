@@ -1,0 +1,21 @@
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../index"
+%%% End:
+
+\begin{itemize}
+\item If attacker can factor $n$ then he can find $d$ same way that
+    the system computes it
+\item Attacker finds $\phi (n)$, then he can compute $d$ and find factors of $n$ and thereby break the system.
+  \begin{itemize}
+  \item If $n$ is small attacker can setup an equation with two unknowns
+    that uses $\phi (n)=(p-1)(q-1)$ since he knows $n=pq$
+    \begin{align*}
+      \phi(n) &= n - p - q + 1 \\
+      p &= n - \phi(n) - q + 1 \quad \text{since } p = \frac{n}{q} \\
+      \frac{n}{q} &= n - \phi(n) - q + 1 \\
+      0 &= q^2 + q(\phi(n) - n - 1) + n
+    \end{align*}
+  \end{itemize}
+\item Attacker finds the decryption exponent $d$, factors $n$ and breaks the system
+\end{itemize}
