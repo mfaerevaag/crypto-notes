@@ -23,18 +23,6 @@ We have a method how to approximate number of primes in a interval.
 \[ \frac{\pi (m)}{m/\ln m} \]
 Here $\pi (m)$ is all primes that are less than $m$.
 
-To generate a $k$-bit prime $m$ we use this approximation to get the
-probability of finding $m$. If $m$ lies in the interval $2^{k-1}$ to
-$2^k-1$ we get:
-\[
-\pi (2^k)-\pi (2^{k-1}) \approx
-\frac{2^k}{\ln 2^k}-\frac{2^{k-1}}{\ln 2^{k-1}}
-\approx \frac{2^{k-1}}{\ln 2^{k-1}}
-\]
-If we now chose a random m within our interval, we now know what the
-probability of it being a prime is. If we exempt all even number, we
-increase the probability of guessing the prime with a factor of two.
-
 \subsection{Trial division}
 Trial division is quite simple and another way to generate a $k$-bit
 prime.
@@ -45,6 +33,7 @@ prime.
   factor that is smaller than $\sqrt{m}$)
 \item If $r$ devides $m$ then $m$ isn't prime
 \item If all primes $r$ are coprime with $m$ then it is prime
+\item Speed is $2^{n/2}$
 \end{itemize}
 This requires that we have all primes under the number we want to find.
 
@@ -79,11 +68,18 @@ We now expand $b^{2^{s-1}t}-1$
 We keep expanding until $s$ becomes zero
 \[ 0 = (b^{2^{s-1}t} + 1)(b^{2^{s-2}t} + 1) \ldots (b^{t} + 1)(b^{t} - 1) \mod m \]
 
-It is known that if $ab \equiv 0 \mod p$ then $a \equiv 0
-\mod p$ or $b \equiv 0 \mod p$. Therefore, either
-\[ b^{2^{i}t} \equiv -1 \mod p \quad \text{for } i = 0, \ldots, s-1 \]
+It is known that if \begin{align*}
+&ab \equiv 0 \mod p\\
+&\mbox{then}\\
+&a \equiv 0 \mod p\\
+&\mbox{or}\\
+&b \equiv 0 \mod p
+\end{align*}
+
+Therefore, we get either
+\[ b^{2^{i}t} \equiv -1 \mod m \quad \text{for } i = 0, \ldots, s-1 \]
 must hold, or
-\[ b^t \equiv 1 \mod p \]
+\[ b^t \equiv 1 \mod m \]
 for $m$ to be a \emph{probable} prime.
 
 E.g. if we pretend that $b^{2^{s-1}t} \equiv -1 \mod m$
