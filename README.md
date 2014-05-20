@@ -10,3 +10,5 @@ Crypto Notes
    * DES
  * Iterated hash-functions
    * Complexity of collisions
+ * RSA encryption (5) and public-key encryption (2)
+   * Weaknesses
