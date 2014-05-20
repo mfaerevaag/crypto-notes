@@ -7,7 +7,7 @@
 \label{sec:euclids-algorithm}
 Finds $\gcd(a, b)$
 \begin{align*}
-  a = 90,& b = 34 \\
+  a = 90,&\quad b = 34 \\
   r_0 &= 90\\
   r_1 &= 34\\
   r_2 &= 90 - 2*34 = 22\\
@@ -21,14 +21,14 @@ End because 2 divides 10, thus $\gcd(90, 34) = 2$
 \label{sec:euclids-extended}
 \begin{align*}
   s_j = \begin{cases}
-    1 &\mbox{if} j = 0\\
-    0 &\mbox{if} j = 1\\
+    1 &\text{if}\ j = 0\\
+    0 &\text{if}\ j = 1\\
     s_{j-2} - q_{j-1}s_{j-1} &\mbox{if} j \ge 2
   \end{cases}\\ \\
   t_j = \begin{cases}
-    1 &\mbox{if} j = 0\\
-    0 &\mbox{if} j = 1\\
-    t_{j-2} - q_{j-1}t_{j-1} &\mbox{if} j \ge 2
+    1 &\text{if}\ j = 0\\
+    0 &\text{if}\ j = 1\\
+    t_{j-2} - q_{j-1}t_{j-1} &\text{if}\ j \ge 2
   \end{cases}
 \end{align*}
 
@@ -47,7 +47,8 @@ End because 2 divides 10, thus $\gcd(90, 34) = 2$
 \end{table}
 The output of Euclid's extended algorithm can be written as:
 \[ 1 = r \cdot s + t \cdot p\]
-Where t will be the multiplicative inverse of $p^{-1} \mod s$. 
+Where t will be the multiplicative inverse of $p^{-1} \mod s$.
+
 \subsection{Chinese Remainder Theorem}
 \label{sec:crm}
 If $x^ay^b \equiv z \mod p$, then $(x^a \mod p)(y^b \mod p) \equiv z \mod p$
@@ -110,7 +111,7 @@ Let $p$ be a prime and let $a,b \in \mathbb{Z}$ Then it holds that
 \subsubsection*{Proof}
 Assume $ab \equiv 0 \mod p$.
 
-If $a \equiv 0 \mod p$ we are done. So we need to show if $a \not
+If $a \equiv 0 \mod p$ we are done. So we need to show nif $a \not
 \equiv 0 \mod p$ then $b \equiv 0 \mod p$.
 
 Since $a \not \equiv 0$ for $a \in \mathbb{Z}_p^*$, it has a
